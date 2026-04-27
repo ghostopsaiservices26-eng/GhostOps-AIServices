@@ -1,0 +1,121 @@
+<!-- HERO -->
+<section class="page-hero">
+  <div class="hero-bg">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="grid-pattern"></div>
+  </div>
+  <div class="container">
+    <div class="badge">⚙️ How It Works</div>
+    <h1>From Job Brief to Qualified<br><span class="gradient-text">Candidates in 4 Simple Steps</span></h1>
+    <p>No technical setup. No long onboarding. You'll have AI working on your first role within 48 hours of signing up.</p>
+    <div class="hero-ctas">
+      <a routerLink="/contact" class="btn btn-primary btn-lg">Start Automating Today →</a>
+      <a routerLink="/services" class="btn btn-ghost-white btn-lg">See All Services</a>
+    </div>
+  </div>
+</section>
+
+<!-- TIMELINE STEPS -->
+<section class="section steps-section">
+  <div class="container">
+    <div class="timeline">
+      <div class="timeline-line"></div>
+      <div class="timeline-step" *ngFor="let step of steps; let i = index">
+        <div class="step-marker">
+          <div class="step-num">{{ i + 1 }}</div>
+        </div>
+        <div class="step-card" [class.reverse]="i % 2 !== 0">
+          <div class="step-content">
+            <div class="step-icon-lg">{{ step.icon }}</div>
+            <div class="step-tag">Step {{ i + 1 }}</div>
+            <h2>{{ step.title }}</h2>
+            <p class="step-desc">{{ step.desc }}</p>
+            <ul class="step-details">
+              <li *ngFor="let detail of step.details">
+                <span class="dot"></span>{{ detail }}
+              </li>
+            </ul>
+            <div class="step-time">
+              <span class="time-icon">⏱</span>
+              <span>{{ step.time }}</span>
+            </div>
+          </div>
+          <div class="step-visual">
+            <div class="visual-box">
+              <div class="vb-header">{{ step.visualTitle }}</div>
+              <div class="vb-body">
+                <div class="vb-row" *ngFor="let row of step.visual">
+                  <span class="vb-label">{{ row.label }}</span>
+                  <span class="vb-value" [class]="row.type">{{ row.value }}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- METRICS -->
+<section class="section metrics-section">
+  <div class="container">
+    <div class="section-header">
+      <div class="badge">📊 Real Results</div>
+      <h2>The Numbers Speak for Themselves</h2>
+      <p>Average outcomes across Ghost Ops AI Services customers in their first 90 days.</p>
+    </div>
+    <div class="metrics-grid">
+      <div class="metric-card" *ngFor="let m of metrics">
+        <div class="metric-icon">{{ m.icon }}</div>
+        <div class="metric-num">{{ m.num }}</div>
+        <div class="metric-label">{{ m.label }}</div>
+        <div class="metric-desc">{{ m.desc }}</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ONBOARDING -->
+<section class="section onboarding-section">
+  <div class="container">
+    <div class="section-header">
+      <div class="badge">🚀 Getting Started</div>
+      <h2>You'll Be Up and Running in 48 Hours</h2>
+      <p>Our team handles the entire setup. You just show up and start placing candidates.</p>
+    </div>
+    <div class="onboarding-steps">
+      <div class="ob-step" *ngFor="let ob of onboarding; let i = index">
+        <div class="ob-num">{{ i + 1 }}</div>
+        <div class="ob-icon">{{ ob.icon }}</div>
+        <h3>{{ ob.title }}</h3>
+        <p>{{ ob.desc }}</p>
+        <div class="ob-time">{{ ob.time }}</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="section-sm hiw-cta-section">
+  <div class="container">
+    <div class="cta-box">
+      <div class="blob blob-1"></div>
+      <div class="blob blob-2"></div>
+      <div class="cta-content">
+        <div class="badge badge-white">🎯 Ready to Start?</div>
+        <h2>See the Full Process Live in a 30-Min Demo</h2>
+        <p>We'll walk you through the exact workflow for your agency type and show you real results from similar clients.</p>
+        <div class="cta-actions">
+          <a routerLink="/contact" class="btn btn-white btn-lg">Book My Free Demo →</a>
+        </div>
+        <div class="cta-trust">
+          <span>✓ Free, no-obligation demo</span>
+          <span>✓ Tailored to your agency</span>
+          <span>✓ Live Q&amp;A included</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

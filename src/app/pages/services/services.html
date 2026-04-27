@@ -1,0 +1,74 @@
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="hero-bg">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="grid-pattern"></div>
+  </div>
+  <div class="container">
+    <div class="badge">🛠️ Our Services</div>
+    <h1>Everything You Need to<br><span class="gradient-text">Automate Your Recruitment</span></h1>
+    <p>Four powerful AI services working together to eliminate manual work and flood your pipeline with qualified candidates.</p>
+    <a routerLink="/contact" class="btn btn-primary btn-lg">Book a Free Demo →</a>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="section services-section">
+  <div class="container">
+    <div class="service-block" *ngFor="let service of services; let i = index" [class.reverse]="i % 2 !== 0">
+      <div class="service-text">
+        <div class="service-tag">{{ service.tag }}</div>
+        <h2>{{ service.title }}</h2>
+        <p class="service-desc">{{ service.desc }}</p>
+        <ul class="service-benefits">
+          <li *ngFor="let benefit of service.benefits">
+            <span class="check-icon">✓</span>{{ benefit }}
+          </li>
+        </ul>
+      </div>
+      <div class="service-visual">
+        <div class="visual-card">
+          <div class="visual-icon">{{ service.icon }}</div>
+          <div class="visual-label">{{ service.visualLabel }}</div>
+          <div class="visual-items">
+            <div class="visual-item" *ngFor="let item of service.visualItems">
+              <span class="vi-label">{{ item.label }}</span>
+              <div class="vi-bar-wrap">
+                <div class="vi-bar" [style.width]="item.pct + '%'"></div>
+              </div>
+              <span class="vi-pct">{{ item.pct }}%</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INTEGRATIONS -->
+<section class="section integrations-section">
+  <div class="container">
+    <div class="section-header">
+      <div class="badge">🔗 Integrations</div>
+      <h2>Works With Your Existing Stack</h2>
+      <p>Ghost Ops AI Services connects to the tools you already use. No ripping and replacing — just adding AI on top.</p>
+    </div>
+    <div class="integrations-grid">
+      <div class="integration-pill" *ngFor="let tool of integrations">{{ tool }}</div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="section-sm services-cta">
+  <div class="container">
+    <div class="cta-inner">
+      <div>
+        <h2>Ready to See It in Action?</h2>
+        <p>Book a free 30-minute demo and we'll show you exactly how it works for your agency.</p>
+      </div>
+      <a routerLink="/contact" class="btn btn-primary btn-lg">Book Free Demo →</a>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,155 @@
+<!-- HERO -->
+<section class="page-hero">
+  <div class="hero-bg">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="grid-pattern"></div>
+  </div>
+  <div class="container">
+    <div class="badge">📅 Book a Demo</div>
+    <h1>See Ghost Ops AI Services in Action —<br><span class="gradient-text">Free 30-Minute Demo</span></h1>
+    <p>No sales pressure. No technical jargon. Just a live walkthrough of how Ghost Ops AI Services will work for your specific agency.</p>
+  </div>
+</section>
+
+<!-- CONTACT SECTION -->
+<section class="section contact-section">
+  <div class="container">
+    <div class="contact-grid">
+
+      <!-- FORM -->
+      <div class="form-col">
+        <div class="form-card" *ngIf="!submitted">
+          <div class="form-header">
+            <h2>Book Your Free Demo</h2>
+            <p>Fill in your details and we'll be in touch within 2 hours to confirm your slot.</p>
+          </div>
+
+          <form (ngSubmit)="onSubmit()" #demoForm="ngForm" class="demo-form">
+            <div class="form-group">
+              <label for="name">Full Name *</label>
+              <input id="name" name="name" type="text" [(ngModel)]="form.name" required placeholder="e.g. Sarah Mitchell" class="form-input" />
+            </div>
+            <div class="form-group">
+              <label for="email">Work Email *</label>
+              <input id="email" name="email" type="email" [(ngModel)]="form.email" required placeholder="sarah@talentbridge.com" class="form-input" />
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="company">Company Name *</label>
+                <input id="company" name="company" type="text" [(ngModel)]="form.company" required placeholder="TalentBridge Agency" class="form-input" />
+              </div>
+              <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input id="phone" name="phone" type="tel" [(ngModel)]="form.phone" placeholder="+44 7700 900000" class="form-input" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="size">Agency Size</label>
+              <select id="size" name="size" [(ngModel)]="form.size" class="form-input form-select">
+                <option value="">Select team size</option>
+                <option>Just me (freelance recruiter)</option>
+                <option>2–5 recruiters</option>
+                <option>6–20 recruiters</option>
+                <option>21–50 recruiters</option>
+                <option>50+ recruiters</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="challenge">Biggest Recruitment Challenge (optional)</label>
+              <textarea id="challenge" name="challenge" [(ngModel)]="form.challenge" rows="3" class="form-input form-textarea" placeholder="e.g. We spend too long screening CVs and struggle to keep up with outreach..."></textarea>
+            </div>
+            <div class="form-error" *ngIf="error">{{ error }}</div>
+            <button type="submit" class="btn btn-primary btn-submit" [disabled]="!demoForm.valid || loading">
+              <span *ngIf="!loading">Book My Free Demo →</span>
+              <span *ngIf="loading">Sending... ⏳</span>
+            </button>
+            <p class="form-note">🔒 Your data is safe with us. We'll never spam or share your details.</p>
+          </form>
+        </div>
+
+        <!-- SUCCESS STATE -->
+        <div class="success-card" *ngIf="submitted">
+          <div class="success-icon">🎉</div>
+          <h2>You're Booked In!</h2>
+          <p>Thanks for reaching out. Our team will contact you within 2 business hours to confirm your demo slot.</p>
+          <div class="success-steps">
+            <div class="ss-step"><span>1</span> Check your inbox for a confirmation email</div>
+            <div class="ss-step"><span>2</span> We'll send a calendar invite with the meeting link</div>
+            <div class="ss-step"><span>3</span> Join the 30-min demo — bring your team!</div>
+          </div>
+          <button class="btn btn-outline" (click)="reset()">Submit Another Request</button>
+        </div>
+      </div>
+
+      <!-- SIDEBAR -->
+      <div class="sidebar-col">
+        <div class="sidebar-card demo-includes">
+          <h3>What's Included in Your Demo</h3>
+          <ul>
+            <li *ngFor="let item of demoIncludes">
+              <span class="si-icon">{{ item.icon }}</span>
+              <div>
+                <div class="si-title">{{ item.title }}</div>
+                <div class="si-desc">{{ item.desc }}</div>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="sidebar-card calendar-card">
+          <div class="cal-icon">📅</div>
+          <h3>Prefer to Book Directly?</h3>
+          <p>Use our calendar to pick a time that works for you — no waiting required.</p>
+          <a href="#" class="btn btn-primary cal-btn">Open Calendar →</a>
+          <p class="cal-note">Powered by Calendly · Free slots available this week</p>
+        </div>
+
+        <div class="sidebar-card trust-card">
+          <h3>Trusted by Recruitment Teams</h3>
+          <div class="trust-badges">
+            <div class="trust-badge" *ngFor="let badge of trustBadges">
+              <div class="tb-icon">{{ badge.icon }}</div>
+              <div class="tb-text">{{ badge.text }}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section faq-section">
+  <div class="container">
+    <div class="section-header">
+      <div class="badge">❓ FAQ</div>
+      <h2>Common Questions Before the Demo</h2>
+      <p>Everything you want to know before booking your free call.</p>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item" *ngFor="let faq of faqs; let i = index" (click)="toggleFaq(i)" [class.open]="openFaq === i">
+        <div class="faq-q">
+          <span>{{ faq.q }}</span>
+          <span class="faq-arrow">{{ openFaq === i ? '−' : '+' }}</span>
+        </div>
+        <div class="faq-a" [class.visible]="openFaq === i">
+          <p>{{ faq.a }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="section-sm final-strip">
+  <div class="container">
+    <div class="strip-inner">
+      <div class="strip-text">
+        <h3>Still have questions?</h3>
+        <p>Email us directly at <strong>hello@ghostops.ai</strong> and we'll reply within a few hours.</p>
+      </div>
+      <a href="mailto:hello@ghostops.ai" class="btn btn-primary">Send Us a Message →</a>
+    </div>
+  </div>
+</section>
