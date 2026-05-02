@@ -104,6 +104,12 @@ export class Home implements AfterViewInit {
 
     if (!lineFill || cards.length === 0) return;
 
+    // On mobile: skip pin animation, show everything
+    if (window.innerWidth <= 768) {
+      gsap.set([header, ...cards], { opacity: 1, y: 0, clearProps: 'all' });
+      return;
+    }
+
     // Line starts at 0
     gsap.set(lineFill, { width: '0%' });
 

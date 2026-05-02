@@ -1,0 +1,42 @@
+<section class="cs-section" #scrollSection>
+  <div class="cs-sticky">
+    <canvas #canvas></canvas>
+
+    <div class="cs-badge">
+      <span class="badge">⚡ Live AI Operations</span>
+    </div>
+
+    <div class="cs-anno cs-anno--tl" [class.active]="anno1">
+      <div class="ca-num">8</div>
+      <div class="ca-label">AI Agents<br>Connected</div>
+    </div>
+
+    <div class="cs-anno cs-anno--tr" [class.active]="anno2">
+      <div class="ca-icon">⚡</div>
+      <div class="ca-val">1,847</div>
+      <div class="ca-label">Tasks Today</div>
+    </div>
+
+    <div class="cs-anno cs-anno--bl" [class.active]="anno3">
+      <div class="ca-icon">🔄</div>
+      <div class="ca-val">24/7</div>
+      <div class="ca-label">Always On</div>
+    </div>
+
+    <div class="cs-anno cs-anno--br" [class.active]="anno3">
+      <div class="ca-icon">✅</div>
+      <div class="ca-val">99.9%</div>
+      <div class="ca-label">Uptime</div>
+    </div>
+
+    <div class="cs-cta" [class.active]="showCta">
+      <h2>Your AI Network,<br><span class="cs-gradient">Live in 48 Hours</span></h2>
+      <a routerLink="/contact" class="btn btn-primary btn-lg">Book a Free Call →</a>
+    </div>
+
+    <div class="cs-hint" [class.hidden]="!showHint">
+      <span>Scroll to explore</span>
+      <div class="cs-arrow">↓</div>
+    </div>
+  </div>
+</section>

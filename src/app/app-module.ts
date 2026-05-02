@@ -15,6 +15,8 @@ import { WebglShader } from './components/webgl-shader/webgl-shader';
 import { ThreeBackground } from './components/three-background/three-background';
 import { MountainScene } from './components/mountain-scene/mountain-scene';
 import { ScrollAnimate } from './directives/scroll-animate';
+import { CanvasScroll } from './components/canvas-scroll/canvas-scroll';
+import { Tilt } from './directives/tilt.directive';
 
 @NgModule({
   declarations: [
@@ -29,6 +31,8 @@ import { ScrollAnimate } from './directives/scroll-animate';
     ThreeBackground,
     MountainScene,
     ScrollAnimate,
+    CanvasScroll,
+    Tilt,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
   providers: [provideBrowserGlobalErrorListeners()],
