@@ -1,7 +1,8 @@
 // HERO
 .hero {
   min-height: 100vh;
-  background: linear-gradient(160deg, #0f172a 0%, #1e1b4b 50%, #0f172a 100%);
+  // semi-transparent so the WebGL shader glow bleeds through
+  background: linear-gradient(160deg, rgba(9,14,31,0.80) 0%, rgba(17,13,51,0.72) 50%, rgba(9,14,31,0.80) 100%);
   display: flex;
   flex-direction: column;
   position: relative;
@@ -23,6 +24,7 @@
   position: absolute;
   inset: 0;
   pointer-events: none;
+  overflow: hidden;
 }
 
 .blob {
@@ -274,7 +276,7 @@
 .flow-arrow { text-align: center; font-size: 18px; color: #cbd5e1; padding: 8px 0; }
 
 // BENEFITS
-.benefits-section { background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%); }
+.benefits-section { background: linear-gradient(135deg, rgba(9,14,31,0.92) 0%, rgba(17,13,51,0.88) 100%); }
 .benefits-section .section-header h2 { color: #fff; }
 .benefits-section .section-header p { color: #94a3b8; }
 .benefits-section .badge { background: rgba(255,255,255,0.08); color: #a5b4fc; border-color: rgba(165,180,252,0.2); }

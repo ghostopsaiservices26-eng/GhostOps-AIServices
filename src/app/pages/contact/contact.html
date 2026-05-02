@@ -5,7 +5,7 @@
     <div class="blob blob-2"></div>
     <div class="grid-pattern"></div>
   </div>
-  <div class="container">
+  <div class="container" appScrollAnimate>
     <div class="badge">📅 Book a Demo</div>
     <h1>See Ghost Ops AI Services in Action —<br><span class="gradient-text">Free 30-Minute Demo</span></h1>
     <p>No sales pressure. No technical jargon. Just a live walkthrough of how Ghost Ops AI Services will work for your specific agency.</p>
@@ -18,7 +18,7 @@
     <div class="contact-grid">
 
       <!-- FORM -->
-      <div class="form-col">
+      <div class="form-col" appScrollAnimate>
         <div class="form-card" *ngIf="!submitted">
           <div class="form-header">
             <h2>Book Your Free Demo</h2>
@@ -83,7 +83,7 @@
       </div>
 
       <!-- SIDEBAR -->
-      <div class="sidebar-col">
+      <div class="sidebar-col" appScrollAnimate [animDelay]="150">
         <div class="sidebar-card demo-includes">
           <h3>What's Included in Your Demo</h3>
           <ul>
@@ -122,12 +122,12 @@
 <!-- FAQ -->
 <section class="section faq-section">
   <div class="container">
-    <div class="section-header">
+    <div class="section-header" appScrollAnimate>
       <div class="badge">❓ FAQ</div>
       <h2>Common Questions Before the Demo</h2>
       <p>Everything you want to know before booking your free call.</p>
     </div>
-    <div class="faq-list">
+    <div class="faq-list" appScrollAnimate [animDelay]="100">
       <div class="faq-item" *ngFor="let faq of faqs; let i = index" (click)="toggleFaq(i)" [class.open]="openFaq === i">
         <div class="faq-q">
           <span>{{ faq.q }}</span>
@@ -144,7 +144,7 @@
 <!-- FINAL CTA -->
 <section class="section-sm final-strip">
   <div class="container">
-    <div class="strip-inner">
+    <div class="strip-inner" appScrollAnimate>
       <div class="strip-text">
         <h3>Still have questions?</h3>
         <p>Email us directly at <strong>hello@ghostops.ai</strong> and we'll reply within a few hours.</p>

@@ -11,9 +11,23 @@ import { Home } from './pages/home/home';
 import { Services } from './pages/services/services';
 import { HowItWorks } from './pages/how-it-works/how-it-works';
 import { Contact } from './pages/contact/contact';
+import { WebglShader } from './components/webgl-shader/webgl-shader';
+import { ThreeBackground } from './components/three-background/three-background';
+import { ScrollAnimate } from './directives/scroll-animate';
 
 @NgModule({
-  declarations: [App, Navbar, Footer, Home, Services, HowItWorks, Contact],
+  declarations: [
+    App,
+    Navbar,
+    Footer,
+    Home,
+    Services,
+    HowItWorks,
+    Contact,
+    WebglShader,
+    ThreeBackground,
+    ScrollAnimate,
+  ],
   imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
   providers: [provideBrowserGlobalErrorListeners()],
   bootstrap: [App],

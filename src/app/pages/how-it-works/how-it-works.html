@@ -5,7 +5,7 @@
     <div class="blob blob-2"></div>
     <div class="grid-pattern"></div>
   </div>
-  <div class="container">
+  <div class="container" appScrollAnimate>
     <div class="badge">⚙️ How It Works</div>
     <h1>From Job Brief to Qualified<br><span class="gradient-text">Candidates in 4 Simple Steps</span></h1>
     <p>No technical setup. No long onboarding. You'll have AI working on your first role within 48 hours of signing up.</p>
@@ -21,7 +21,8 @@
   <div class="container">
     <div class="timeline">
       <div class="timeline-line"></div>
-      <div class="timeline-step" *ngFor="let step of steps; let i = index">
+      <div class="timeline-step" *ngFor="let step of steps; let i = index"
+           appScrollAnimate [animDelay]="i * 100">
         <div class="step-marker">
           <div class="step-num">{{ i + 1 }}</div>
         </div>
@@ -61,13 +62,14 @@
 <!-- METRICS -->
 <section class="section metrics-section">
   <div class="container">
-    <div class="section-header">
+    <div class="section-header" appScrollAnimate>
       <div class="badge">📊 Real Results</div>
       <h2>The Numbers Speak for Themselves</h2>
       <p>Average outcomes across Ghost Ops AI Services customers in their first 90 days.</p>
     </div>
     <div class="metrics-grid">
-      <div class="metric-card" *ngFor="let m of metrics">
+      <div class="metric-card" *ngFor="let m of metrics; let i = index"
+           appScrollAnimate [animDelay]="i * 80">
         <div class="metric-icon">{{ m.icon }}</div>
         <div class="metric-num">{{ m.num }}</div>
         <div class="metric-label">{{ m.label }}</div>
@@ -80,13 +82,14 @@
 <!-- ONBOARDING -->
 <section class="section onboarding-section">
   <div class="container">
-    <div class="section-header">
+    <div class="section-header" appScrollAnimate>
       <div class="badge">🚀 Getting Started</div>
       <h2>You'll Be Up and Running in 48 Hours</h2>
       <p>Our team handles the entire setup. You just show up and start placing candidates.</p>
     </div>
     <div class="onboarding-steps">
-      <div class="ob-step" *ngFor="let ob of onboarding; let i = index">
+      <div class="ob-step" *ngFor="let ob of onboarding; let i = index"
+           appScrollAnimate [animDelay]="i * 120">
         <div class="ob-num">{{ i + 1 }}</div>
         <div class="ob-icon">{{ ob.icon }}</div>
         <h3>{{ ob.title }}</h3>
@@ -100,7 +103,7 @@
 <!-- CTA -->
 <section class="section-sm hiw-cta-section">
   <div class="container">
-    <div class="cta-box">
+    <div class="cta-box" appScrollAnimate>
       <div class="blob blob-1"></div>
       <div class="blob blob-2"></div>
       <div class="cta-content">

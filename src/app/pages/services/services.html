@@ -5,7 +5,7 @@
     <div class="blob blob-2"></div>
     <div class="grid-pattern"></div>
   </div>
-  <div class="container">
+  <div class="container" appScrollAnimate>
     <div class="badge">🛠️ Our Services</div>
     <h1>Everything You Need to<br><span class="gradient-text">Automate Your Recruitment</span></h1>
     <p>Four powerful AI services working together to eliminate manual work and flood your pipeline with qualified candidates.</p>
@@ -16,7 +16,9 @@
 <!-- SERVICES -->
 <section class="section services-section">
   <div class="container">
-    <div class="service-block" *ngFor="let service of services; let i = index" [class.reverse]="i % 2 !== 0">
+    <div class="service-block" *ngFor="let service of services; let i = index"
+         [class.reverse]="i % 2 !== 0"
+         appScrollAnimate [animDelay]="0">
       <div class="service-text">
         <div class="service-tag">{{ service.tag }}</div>
         <h2>{{ service.title }}</h2>
@@ -49,12 +51,12 @@
 <!-- INTEGRATIONS -->
 <section class="section integrations-section">
   <div class="container">
-    <div class="section-header">
+    <div class="section-header" appScrollAnimate>
       <div class="badge">🔗 Integrations</div>
       <h2>Works With Your Existing Stack</h2>
       <p>Ghost Ops AI Services connects to the tools you already use. No ripping and replacing — just adding AI on top.</p>
     </div>
-    <div class="integrations-grid">
+    <div class="integrations-grid" appScrollAnimate [animDelay]="100">
       <div class="integration-pill" *ngFor="let tool of integrations">{{ tool }}</div>
     </div>
   </div>
@@ -63,7 +65,7 @@
 <!-- CTA -->
 <section class="section-sm services-cta">
   <div class="container">
-    <div class="cta-inner">
+    <div class="cta-inner" appScrollAnimate>
       <div>
         <h2>Ready to See It in Action?</h2>
         <p>Book a free 30-minute demo and we'll show you exactly how it works for your agency.</p>

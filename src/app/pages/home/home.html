@@ -6,7 +6,7 @@
     <div class="grid-pattern"></div>
   </div>
   <div class="container">
-    <div class="hero-content">
+    <div class="hero-content" appScrollAnimate [animDelay]="0">
       <div class="badge">🚀 AI-Powered Recruitment Automation</div>
       <h1>Fill Roles Faster.<br><span class="gradient-text">Work Less. Place More.</span></h1>
       <p class="hero-sub">Ghost Ops AI Services automates candidate sourcing, resume screening, and outreach — so your team focuses on closing deals, not chasing spreadsheets. Cut manual work by up to <strong>80%</strong>.</p>
@@ -21,7 +21,7 @@
       </div>
     </div>
 
-    <div class="hero-visual">
+    <div class="hero-visual" appScrollAnimate [animDelay]="200">
       <div class="dashboard-card animate-float">
         <div class="dash-header">
           <span class="dash-dot red"></span>
@@ -63,23 +63,23 @@
 <!-- PROBLEM -->
 <section class="section problem-section">
   <div class="container">
-    <div class="section-header">
+    <div class="section-header" appScrollAnimate>
       <div class="badge">😩 The Problem</div>
       <h2>Manual Recruiting Is Killing Your Agency's Growth</h2>
       <p>Recruiters spend up to 70% of their time on tasks that don't require human judgment — and it's costing you placements.</p>
     </div>
     <div class="grid-3 problems">
-      <div class="problem-card">
+      <div class="problem-card" appScrollAnimate [animDelay]="0">
         <div class="problem-icon">⏱️</div>
         <h3>Hours Lost to Screening</h3>
         <p>Your team manually reads hundreds of CVs to find 5 good ones. That's 10+ hours per role — every single week.</p>
       </div>
-      <div class="problem-card">
+      <div class="problem-card" appScrollAnimate [animDelay]="120">
         <div class="problem-icon">📧</div>
         <h3>Outreach That Falls Flat</h3>
         <p>Generic copy-paste messages get ignored. Following up manually is a full-time job on its own.</p>
       </div>
-      <div class="problem-card">
+      <div class="problem-card" appScrollAnimate [animDelay]="240">
         <div class="problem-icon">📋</div>
         <h3>Talent Falling Through the Cracks</h3>
         <p>Great candidates get missed because your team simply doesn't have the bandwidth to reach everyone.</p>
@@ -92,7 +92,7 @@
 <section class="section solution-section">
   <div class="container">
     <div class="solution-inner">
-      <div class="solution-text">
+      <div class="solution-text" appScrollAnimate>
         <div class="badge">✨ The Solution</div>
         <h2>Let AI Handle the Heavy Lifting</h2>
         <p>Ghost Ops AI Services plugs into your workflow and automates every repetitive step — from sourcing to shortlisting to outreach. Your team stays focused on what actually drives revenue: building relationships and closing placements.</p>
@@ -104,7 +104,7 @@
         </ul>
         <a routerLink="/services" class="btn btn-primary">Explore All Features →</a>
       </div>
-      <div class="solution-visual">
+      <div class="solution-visual" appScrollAnimate [animDelay]="150">
         <div class="flow-card">
           <div class="flow-step">
             <div class="flow-icon">🔍</div>
@@ -150,28 +150,28 @@
 <!-- BENEFITS -->
 <section class="section benefits-section">
   <div class="container">
-    <div class="section-header">
+    <div class="section-header" appScrollAnimate>
       <div class="badge">📈 Key Benefits</div>
       <h2>Results You'll See in the First Week</h2>
       <p>Ghost Ops AI Services delivers measurable impact from day one — not months down the line.</p>
     </div>
     <div class="grid-4 benefits">
-      <div class="benefit-card">
+      <div class="benefit-card" appScrollAnimate [animDelay]="0">
         <div class="benefit-num">80%</div>
         <div class="benefit-label">Less Manual Work</div>
         <p>Eliminate repetitive tasks from your team's daily routine.</p>
       </div>
-      <div class="benefit-card">
+      <div class="benefit-card" appScrollAnimate [animDelay]="100">
         <div class="benefit-num">5×</div>
         <div class="benefit-label">Faster Shortlisting</div>
         <p>Go from job brief to qualified shortlist in hours, not days.</p>
       </div>
-      <div class="benefit-card">
+      <div class="benefit-card" appScrollAnimate [animDelay]="200">
         <div class="benefit-num">3×</div>
         <div class="benefit-label">More Placements</div>
         <p>Handle more clients and roles without hiring more staff.</p>
       </div>
-      <div class="benefit-card">
+      <div class="benefit-card" appScrollAnimate [animDelay]="300">
         <div class="benefit-num">60%</div>
         <div class="benefit-label">Higher Response Rate</div>
         <p>AI-personalised outreach gets replies, not silence.</p>
@@ -183,20 +183,20 @@
 <!-- HOW IT WORKS PREVIEW -->
 <section class="section hiw-preview">
   <div class="container">
-    <div class="section-header">
+    <div class="section-header" appScrollAnimate>
       <div class="badge">⚙️ How It Works</div>
       <h2>From Job Brief to Qualified Candidates in 4 Steps</h2>
       <p>No complex onboarding. No IT team needed. You're up and running in 48 hours.</p>
     </div>
     <div class="steps">
-      <div class="step" *ngFor="let step of steps; let i = index">
+      <div class="step" *ngFor="let step of steps; let i = index" appScrollAnimate [animDelay]="i * 120">
         <div class="step-number">{{ i + 1 }}</div>
         <div class="step-icon">{{ step.icon }}</div>
         <h3>{{ step.title }}</h3>
         <p>{{ step.desc }}</p>
       </div>
     </div>
-    <div class="hiw-cta">
+    <div class="hiw-cta" appScrollAnimate [animDelay]="100">
       <a routerLink="/how-it-works" class="btn btn-outline">See the Full Process →</a>
     </div>
   </div>
@@ -205,7 +205,7 @@
 <!-- FINAL CTA -->
 <section class="section final-cta">
   <div class="container">
-    <div class="cta-box">
+    <div class="cta-box" appScrollAnimate>
       <div class="badge badge-white">🎯 Ready to Automate?</div>
       <h2>Stop Drowning in CVs.<br>Start Making Placements.</h2>
       <p>Book a free 30-minute demo and see Ghost Ops AI Services live — tailored to your agency.</p>
