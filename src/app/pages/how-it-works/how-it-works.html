@@ -1,46 +1,37 @@
 <!-- HERO -->
 <section class="page-hero">
   <div class="hero-bg">
-    <div class="blob blob-1"></div>
-    <div class="blob blob-2"></div>
+    <div class="blob blob-1"></div><div class="blob blob-2"></div>
     <div class="grid-pattern"></div>
   </div>
   <div class="container" appScrollAnimate>
-    <div class="badge">⚙️ How It Works</div>
-    <h1>From Job Brief to Qualified<br><span class="gradient-text">Candidates in 4 Simple Steps</span></h1>
-    <p>No technical setup. No long onboarding. You'll have AI working on your first role within 48 hours of signing up.</p>
+    <div class="badge">⚙️ Our Process</div>
+    <h1>From Vision to<br><span class="gradient-text">Live AI System</span></h1>
+    <p>A proven 4-step process that delivers live AI systems fast — zero disruption, maximum impact.</p>
     <div class="hero-ctas">
-      <a routerLink="/contact" class="btn btn-primary btn-lg">Start Automating Today →</a>
-      <a routerLink="/services" class="btn btn-ghost-white btn-lg">See All Services</a>
+      <a routerLink="/contact" class="btn btn-primary btn-lg">Start Your Project →</a>
+      <a routerLink="/services" class="btn btn-ghost-white btn-lg">View Services</a>
     </div>
   </div>
 </section>
 
-<!-- TIMELINE STEPS -->
+<!-- TIMELINE -->
 <section class="section steps-section">
   <div class="container">
     <div class="timeline">
       <div class="timeline-line"></div>
-      <div class="timeline-step" *ngFor="let step of steps; let i = index"
-           appScrollAnimate [animDelay]="i * 100">
-        <div class="step-marker">
-          <div class="step-num">{{ i + 1 }}</div>
-        </div>
+      <div class="timeline-step" *ngFor="let step of steps; let i = index" appScrollAnimate [animDelay]="i * 80">
+        <div class="step-marker"><div class="step-num">{{ step.num }}</div></div>
         <div class="step-card" [class.reverse]="i % 2 !== 0">
           <div class="step-content">
             <div class="step-icon-lg">{{ step.icon }}</div>
-            <div class="step-tag">Step {{ i + 1 }}</div>
+            <div class="step-tag">Step {{ step.num }}</div>
             <h2>{{ step.title }}</h2>
             <p class="step-desc">{{ step.desc }}</p>
             <ul class="step-details">
-              <li *ngFor="let detail of step.details">
-                <span class="dot"></span>{{ detail }}
-              </li>
+              <li *ngFor="let d of step.details"><span class="dot"></span>{{ d }}</li>
             </ul>
-            <div class="step-time">
-              <span class="time-icon">⏱</span>
-              <span>{{ step.time }}</span>
-            </div>
+            <div class="step-time"><span>⏱</span><span>{{ step.time }}</span></div>
           </div>
           <div class="step-visual">
             <div class="visual-box">
@@ -64,12 +55,11 @@
   <div class="container">
     <div class="section-header" appScrollAnimate>
       <div class="badge">📊 Real Results</div>
-      <h2>The Numbers Speak for Themselves</h2>
-      <p>Average outcomes across Ghost Ops AI Services customers in their first 90 days.</p>
+      <h2>The Numbers Speak</h2>
+      <p>Average outcomes across GhostOps clients in their first 90 days.</p>
     </div>
     <div class="metrics-grid">
-      <div class="metric-card" *ngFor="let m of metrics; let i = index"
-           appScrollAnimate [animDelay]="i * 80">
+      <div class="metric-card" *ngFor="let m of metrics; let i = index" appScrollAnimate [animDelay]="i * 70">
         <div class="metric-icon">{{ m.icon }}</div>
         <div class="metric-num">{{ m.num }}</div>
         <div class="metric-label">{{ m.label }}</div>
@@ -84,12 +74,11 @@
   <div class="container">
     <div class="section-header" appScrollAnimate>
       <div class="badge">🚀 Getting Started</div>
-      <h2>You'll Be Up and Running in 48 Hours</h2>
-      <p>Our team handles the entire setup. You just show up and start placing candidates.</p>
+      <h2>Live in Under 5 Weeks</h2>
+      <p>Our team handles everything — you just show up and start using your AI.</p>
     </div>
     <div class="onboarding-steps">
-      <div class="ob-step" *ngFor="let ob of onboarding; let i = index"
-           appScrollAnimate [animDelay]="i * 120">
+      <div class="ob-step" *ngFor="let ob of onboarding; let i = index" appScrollAnimate [animDelay]="i * 100">
         <div class="ob-num">{{ i + 1 }}</div>
         <div class="ob-icon">{{ ob.icon }}</div>
         <h3>{{ ob.title }}</h3>
@@ -104,19 +93,18 @@
 <section class="section-sm hiw-cta-section">
   <div class="container">
     <div class="cta-box" appScrollAnimate>
-      <div class="blob blob-1"></div>
-      <div class="blob blob-2"></div>
+      <div class="blob blob-1"></div><div class="blob blob-2"></div>
       <div class="cta-content">
         <div class="badge badge-white">🎯 Ready to Start?</div>
-        <h2>See the Full Process Live in a 30-Min Demo</h2>
-        <p>We'll walk you through the exact workflow for your agency type and show you real results from similar clients.</p>
+        <h2>Book a Free Strategy Call</h2>
+        <p>We'll map your workflows, identify your highest-value AI opportunities, and show you exactly what we'd build.</p>
         <div class="cta-actions">
-          <a routerLink="/contact" class="btn btn-white btn-lg">Book My Free Demo →</a>
+          <a routerLink="/contact" class="btn btn-white btn-lg">Book My Free Call →</a>
         </div>
         <div class="cta-trust">
-          <span>✓ Free, no-obligation demo</span>
-          <span>✓ Tailored to your agency</span>
-          <span>✓ Live Q&amp;A included</span>
+          <span>✓ Free, no-obligation call</span>
+          <span>✓ Custom roadmap included</span>
+          <span>✓ Live Q&amp;A with our engineers</span>
         </div>
       </div>
     </div>

@@ -1,45 +1,46 @@
 <!-- PAGE HERO -->
 <section class="page-hero">
   <div class="hero-bg">
-    <div class="blob blob-1"></div>
-    <div class="blob blob-2"></div>
+    <div class="blob blob-1"></div><div class="blob blob-2"></div>
     <div class="grid-pattern"></div>
   </div>
   <div class="container" appScrollAnimate>
     <div class="badge">🛠️ Our Services</div>
-    <h1>Everything You Need to<br><span class="gradient-text">Automate Your Recruitment</span></h1>
-    <p>Four powerful AI services working together to eliminate manual work and flood your pipeline with qualified candidates.</p>
-    <a routerLink="/contact" class="btn btn-primary btn-lg">Book a Free Demo →</a>
+    <h1>Three Pillars of<br><span class="gradient-text">AI Excellence</span></h1>
+    <p>Custom AI automation, intelligent agents, and high-converting websites — built for businesses that want to dominate their market.</p>
+    <a routerLink="/contact" class="btn btn-primary btn-lg">Book a Free Call →</a>
   </div>
 </section>
 
 <!-- SERVICES -->
-<section class="section services-section">
+<section class="section services-detail">
   <div class="container">
-    <div class="service-block" *ngFor="let service of services; let i = index"
+    <div class="svc-block" *ngFor="let svc of services; let i = index"
          [class.reverse]="i % 2 !== 0"
-         appScrollAnimate [animDelay]="0">
-      <div class="service-text">
-        <div class="service-tag">{{ service.tag }}</div>
-        <h2>{{ service.title }}</h2>
-        <p class="service-desc">{{ service.desc }}</p>
-        <ul class="service-benefits">
-          <li *ngFor="let benefit of service.benefits">
-            <span class="check-icon">✓</span>{{ benefit }}
+         appScrollAnimate>
+      <div class="svc-text">
+        <div class="svc-tag" [class]="'tag--' + svc.accent">{{ svc.tag }}</div>
+        <h2>{{ svc.title }}</h2>
+        <p class="svc-desc">{{ svc.desc }}</p>
+        <ul class="svc-benefits">
+          <li *ngFor="let b of svc.benefits">
+            <span class="check" [class]="'check--' + svc.accent">✓</span>{{ b }}
           </li>
         </ul>
+        <div class="svc-usecases">
+          <span class="uc-label">Use cases:</span>
+          <span class="uc-pill" *ngFor="let uc of svc.useCases">{{ uc }}</span>
+        </div>
       </div>
-      <div class="service-visual">
-        <div class="visual-card">
-          <div class="visual-icon">{{ service.icon }}</div>
-          <div class="visual-label">{{ service.visualLabel }}</div>
-          <div class="visual-items">
-            <div class="visual-item" *ngFor="let item of service.visualItems">
-              <span class="vi-label">{{ item.label }}</span>
-              <div class="vi-bar-wrap">
-                <div class="vi-bar" [style.width]="item.pct + '%'"></div>
-              </div>
-              <span class="vi-pct">{{ item.pct }}%</span>
+      <div class="svc-visual">
+        <div class="visual-card" [class]="'vc--' + svc.accent">
+          <div class="vc-icon">{{ svc.icon }}</div>
+          <div class="vc-label">{{ svc.visualLabel }}</div>
+          <div class="vc-bars">
+            <div class="vb-row" *ngFor="let item of svc.visualItems">
+              <span class="vb-label">{{ item.label }}</span>
+              <div class="vb-track"><div class="vb-fill" [class]="'fill--' + svc.accent" [style.width]="item.pct + '%'"></div></div>
+              <span class="vb-pct" [class]="'pct--' + svc.accent">{{ item.pct }}%</span>
             </div>
           </div>
         </div>
@@ -53,11 +54,11 @@
   <div class="container">
     <div class="section-header" appScrollAnimate>
       <div class="badge">🔗 Integrations</div>
-      <h2>Works With Your Existing Stack</h2>
-      <p>Ghost Ops AI Services connects to the tools you already use. No ripping and replacing — just adding AI on top.</p>
+      <h2>Works With Your Stack</h2>
+      <p>GhostOps connects with the tools you already use — no ripping and replacing.</p>
     </div>
-    <div class="integrations-grid" appScrollAnimate [animDelay]="100">
-      <div class="integration-pill" *ngFor="let tool of integrations">{{ tool }}</div>
+    <div class="integrations-grid" appScrollAnimate [animDelay]="80">
+      <div class="int-pill" *ngFor="let t of integrations">{{ t }}</div>
     </div>
   </div>
 </section>
@@ -67,10 +68,10 @@
   <div class="container">
     <div class="cta-inner" appScrollAnimate>
       <div>
-        <h2>Ready to See It in Action?</h2>
-        <p>Book a free 30-minute demo and we'll show you exactly how it works for your agency.</p>
+        <h2>Ready to Get Started?</h2>
+        <p>Book a free strategy call — we'll show you exactly what we'd build for your business.</p>
       </div>
-      <a routerLink="/contact" class="btn btn-primary btn-lg">Book Free Demo →</a>
+      <a routerLink="/contact" class="btn btn-primary btn-lg">Book Free Call →</a>
     </div>
   </div>
 </section>

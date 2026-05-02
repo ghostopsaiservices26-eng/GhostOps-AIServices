@@ -3,143 +3,134 @@
   <div class="hero-bg">
     <div class="blob blob-1"></div>
     <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
     <div class="grid-pattern"></div>
   </div>
   <div class="container">
-    <div class="hero-content" appScrollAnimate [animDelay]="0">
-      <div class="badge">🚀 AI-Powered Recruitment Automation</div>
-      <h1>Fill Roles Faster.<br><span class="gradient-text">Work Less. Place More.</span></h1>
-      <p class="hero-sub">Ghost Ops AI Services automates candidate sourcing, resume screening, and outreach — so your team focuses on closing deals, not chasing spreadsheets. Cut manual work by up to <strong>80%</strong>.</p>
+    <div class="hero-content" appScrollAnimate>
+      <div class="badge">⚡ Elite AI Automation Agency</div>
+      <h1>Automate.<br><span class="gradient-text">Scale.</span><br>Dominate.</h1>
+      <p class="hero-sub">GhostOps builds custom AI systems, deploys intelligent agents, and creates high-converting websites — so your business runs smarter, faster, and 24/7 without extra headcount.</p>
       <div class="hero-ctas">
-        <a routerLink="/contact" class="btn btn-primary btn-lg">Book a Free Demo →</a>
-        <a routerLink="/how-it-works" class="btn btn-outline btn-lg">See How It Works</a>
+        <a routerLink="/contact" class="btn btn-primary btn-lg btn-glow">Book a Call →</a>
+        <a routerLink="/services" class="btn btn-glass btn-lg">View Services</a>
       </div>
       <div class="hero-trust">
-        <span class="trust-item">✓ No credit card required</span>
-        <span class="trust-item">✓ Setup in 48 hours</span>
-        <span class="trust-item">✓ GDPR compliant</span>
+        <span class="ti"><span>⚡</span> 50+ AI Systems Built</span>
+        <span class="ti"><span>🚀</span> 48h Onboarding</span>
+        <span class="ti"><span>🔒</span> Enterprise Security</span>
       </div>
     </div>
 
-    <div class="hero-visual" appScrollAnimate [animDelay]="200">
-      <div class="dashboard-card animate-float">
-        <div class="dash-header">
-          <span class="dash-dot red"></span>
-          <span class="dash-dot yellow"></span>
-          <span class="dash-dot green"></span>
-          <span class="dash-title">Ghost Ops AI Dashboard</span>
+    <div class="hero-visual" appScrollAnimate [animDelay]="180">
+      <div class="float-tag ftag-1">
+        <span class="ft-icon">📈</span>
+        <div><div class="ft-num">247%</div><div class="ft-lbl">Avg. ROI</div></div>
+      </div>
+      <div class="float-tag ftag-2">
+        <span class="ft-icon">⚡</span>
+        <div><div class="ft-num">80%</div><div class="ft-lbl">Time Saved</div></div>
+      </div>
+
+      <div class="dash-card">
+        <div class="dc-head">
+          <div class="dc-dots"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span></div>
+          <span class="dc-title">GhostOps — Live Dashboard</span>
+          <span class="dc-live">● All systems operational</span>
         </div>
-        <div class="dash-stats">
-          <div class="stat-box">
-            <span class="stat-num">247</span>
-            <span class="stat-label">Candidates Sourced</span>
-            <span class="stat-change up">↑ 34% this week</span>
+        <div class="dc-label">Active AI Agents</div>
+        <div class="agent-list">
+          <div class="agent-row">
+            <span class="pulse active"></span>
+            <span class="ag-name">WhatsApp Sales Agent</span>
+            <span class="ag-tag live">Live</span>
           </div>
-          <div class="stat-box">
-            <span class="stat-num">89%</span>
-            <span class="stat-label">Screen Accuracy</span>
-            <span class="stat-change up">↑ AI-matched</span>
+          <div class="agent-row">
+            <span class="pulse active"></span>
+            <span class="ag-name">Lead Qualification AI</span>
+            <span class="ag-tag live">Live</span>
           </div>
-          <div class="stat-box">
-            <span class="stat-num">3.2h</span>
-            <span class="stat-label">Avg. Time-to-Shortlist</span>
-            <span class="stat-change up">↓ was 18h</span>
+          <div class="agent-row">
+            <span class="pulse active"></span>
+            <span class="ag-name">Recruitment Sourcing Bot</span>
+            <span class="ag-tag live">Live</span>
+          </div>
+          <div class="agent-row">
+            <span class="pulse running"></span>
+            <span class="ag-name">Email Outreach Sequences</span>
+            <span class="ag-tag running">Running</span>
           </div>
         </div>
-        <div class="dash-pipeline">
-          <div class="pipeline-label">Today's Pipeline</div>
-          <div class="pipeline-bars">
-            <div class="p-bar"><span class="p-name">Candidate A</span><span class="p-tag match">92% Match</span></div>
-            <div class="p-bar"><span class="p-name">Candidate B</span><span class="p-tag match">88% Match</span></div>
-            <div class="p-bar"><span class="p-name">Candidate C</span><span class="p-tag review">In Review</span></div>
-            <div class="p-bar"><span class="p-name">Candidate D</span><span class="p-tag outreach">Outreach Sent</span></div>
-          </div>
+        <div class="dc-metrics">
+          <div class="dc-m"><span class="dm-n">1,847</span><span class="dm-l">Tasks Today</span></div>
+          <div class="dc-m"><span class="dm-n">99.9%</span><span class="dm-l">Uptime</span></div>
+          <div class="dc-m"><span class="dm-n">0</span><span class="dm-l">Errors</span></div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- PROBLEM -->
-<section class="section problem-section">
+<!-- SERVICES -->
+<section class="section services-section">
   <div class="container">
     <div class="section-header" appScrollAnimate>
-      <div class="badge">😩 The Problem</div>
-      <h2>Manual Recruiting Is Killing Your Agency's Growth</h2>
-      <p>Recruiters spend up to 70% of their time on tasks that don't require human judgment — and it's costing you placements.</p>
+      <div class="badge">🛠️ What We Build</div>
+      <h2>Three Pillars of <span class="gradient-text">AI Excellence</span></h2>
+      <p>Custom AI automation, intelligent agents, and high-converting websites — everything your business needs to dominate.</p>
     </div>
-    <div class="grid-3 problems">
-      <div class="problem-card" appScrollAnimate [animDelay]="0">
-        <div class="problem-icon">⏱️</div>
-        <h3>Hours Lost to Screening</h3>
-        <p>Your team manually reads hundreds of CVs to find 5 good ones. That's 10+ hours per role — every single week.</p>
-      </div>
-      <div class="problem-card" appScrollAnimate [animDelay]="120">
-        <div class="problem-icon">📧</div>
-        <h3>Outreach That Falls Flat</h3>
-        <p>Generic copy-paste messages get ignored. Following up manually is a full-time job on its own.</p>
-      </div>
-      <div class="problem-card" appScrollAnimate [animDelay]="240">
-        <div class="problem-icon">📋</div>
-        <h3>Talent Falling Through the Cracks</h3>
-        <p>Great candidates get missed because your team simply doesn't have the bandwidth to reach everyone.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- SOLUTION -->
-<section class="section solution-section">
-  <div class="container">
-    <div class="solution-inner">
-      <div class="solution-text" appScrollAnimate>
-        <div class="badge">✨ The Solution</div>
-        <h2>Let AI Handle the Heavy Lifting</h2>
-        <p>Ghost Ops AI Services plugs into your workflow and automates every repetitive step — from sourcing to shortlisting to outreach. Your team stays focused on what actually drives revenue: building relationships and closing placements.</p>
-        <ul class="solution-list">
-          <li><span class="check">✓</span> AI scans thousands of profiles in minutes, not days</li>
-          <li><span class="check">✓</span> Smart matching scores candidates against your exact criteria</li>
-          <li><span class="check">✓</span> Personalised outreach sent automatically at the right time</li>
-          <li><span class="check">✓</span> Full pipeline visibility in one clean dashboard</li>
+    <div class="services-grid">
+      <div class="svc-card" *ngFor="let s of services; let i = index"
+           appScrollAnimate [animDelay]="i * 140"
+           [class]="'svc-card--' + s.color">
+        <div class="sc-glow"></div>
+        <div class="sc-tag">{{ s.tag }}</div>
+        <div class="sc-icon">{{ s.icon }}</div>
+        <h3>{{ s.title }}</h3>
+        <p>{{ s.desc }}</p>
+        <ul class="sc-list">
+          <li *ngFor="let f of s.features"><span>→</span>{{ f }}</li>
         </ul>
-        <a routerLink="/services" class="btn btn-primary">Explore All Features →</a>
+        <a routerLink="/services" class="sc-link">Learn more →</a>
       </div>
-      <div class="solution-visual" appScrollAnimate [animDelay]="150">
-        <div class="flow-card">
-          <div class="flow-step">
-            <div class="flow-icon">🔍</div>
+    </div>
+  </div>
+</section>
+
+<!-- SOLUTIONS (Recruitment) -->
+<section class="section solutions-section">
+  <div class="container">
+    <div class="solutions-inner">
+      <div class="sol-text" appScrollAnimate>
+        <div class="badge">🎯 Featured Solution</div>
+        <h2>Recruitment Automation<br><span class="gradient-text">That Actually Works</span></h2>
+        <p>Our recruitment AI handles everything from sourcing to outreach — so your team focuses on placing, not admin.</p>
+        <div class="sol-grid">
+          <div class="sol-item" *ngFor="let sol of solutions">
+            <div class="sol-icon">{{ sol.icon }}</div>
             <div>
-              <div class="flow-title">AI Sourcing</div>
-              <div class="flow-desc">Profiles found instantly</div>
+              <div class="sol-title">{{ sol.title }}</div>
+              <div class="sol-desc">{{ sol.desc }}</div>
             </div>
-            <span class="flow-badge">Done</span>
           </div>
-          <div class="flow-arrow">↓</div>
-          <div class="flow-step">
-            <div class="flow-icon">🎯</div>
-            <div>
-              <div class="flow-title">Smart Screening</div>
-              <div class="flow-desc">Top candidates shortlisted</div>
-            </div>
-            <span class="flow-badge">Done</span>
+        </div>
+        <a routerLink="/contact" class="btn btn-primary">Get This Solution →</a>
+      </div>
+      <div class="sol-visual" appScrollAnimate [animDelay]="180">
+        <div class="rec-card">
+          <div class="rc-head">
+            <span>📊 Recruitment Pipeline</span>
+            <span class="rc-live">● Live</span>
           </div>
-          <div class="flow-arrow">↓</div>
-          <div class="flow-step active">
-            <div class="flow-icon">✉️</div>
-            <div>
-              <div class="flow-title">Auto Outreach</div>
-              <div class="flow-desc">Sending messages...</div>
-            </div>
-            <span class="flow-badge running">Live</span>
+          <div class="rc-body">
+            <div class="rc-row"><span class="rc-name">Alex Johnson</span><div class="rc-bar-wrap"><div class="rc-bar" style="width:94%"></div></div><span class="rc-score match">94%</span></div>
+            <div class="rc-row"><span class="rc-name">Maria Santos</span><div class="rc-bar-wrap"><div class="rc-bar" style="width:89%"></div></div><span class="rc-score match">89%</span></div>
+            <div class="rc-row"><span class="rc-name">David Park</span><div class="rc-bar-wrap"><div class="rc-bar" style="width:82%"></div></div><span class="rc-score match">82%</span></div>
+            <div class="rc-row"><span class="rc-name">Lisa Chen</span><div class="rc-bar-wrap"><div class="rc-bar" style="width:76%"></div></div><span class="rc-score review">76%</span></div>
           </div>
-          <div class="flow-arrow">↓</div>
-          <div class="flow-step">
-            <div class="flow-icon">🏆</div>
-            <div>
-              <div class="flow-title">Qualified Pipeline</div>
-              <div class="flow-desc">Ready for your review</div>
-            </div>
-            <span class="flow-badge pending">Next</span>
+          <div class="rc-foot">
+            <span>✓ 247 sourced today</span>
+            <span>↑ 3.2h avg shortlist</span>
           </div>
         </div>
       </div>
@@ -147,57 +138,68 @@
   </div>
 </section>
 
-<!-- BENEFITS -->
-<section class="section benefits-section">
+<!-- STATS -->
+<section class="section stats-section">
   <div class="container">
     <div class="section-header" appScrollAnimate>
-      <div class="badge">📈 Key Benefits</div>
-      <h2>Results You'll See in the First Week</h2>
-      <p>Ghost Ops AI Services delivers measurable impact from day one — not months down the line.</p>
+      <div class="badge">📈 The Impact</div>
+      <h2>Built to <span class="gradient-text">Deliver Results</span></h2>
+      <p>Clients see measurable impact within 30 days — not months.</p>
     </div>
-    <div class="grid-4 benefits">
-      <div class="benefit-card" appScrollAnimate [animDelay]="0">
-        <div class="benefit-num">80%</div>
-        <div class="benefit-label">Less Manual Work</div>
-        <p>Eliminate repetitive tasks from your team's daily routine.</p>
-      </div>
-      <div class="benefit-card" appScrollAnimate [animDelay]="100">
-        <div class="benefit-num">5×</div>
-        <div class="benefit-label">Faster Shortlisting</div>
-        <p>Go from job brief to qualified shortlist in hours, not days.</p>
-      </div>
-      <div class="benefit-card" appScrollAnimate [animDelay]="200">
-        <div class="benefit-num">3×</div>
-        <div class="benefit-label">More Placements</div>
-        <p>Handle more clients and roles without hiring more staff.</p>
-      </div>
-      <div class="benefit-card" appScrollAnimate [animDelay]="300">
-        <div class="benefit-num">60%</div>
-        <div class="benefit-label">Higher Response Rate</div>
-        <p>AI-personalised outreach gets replies, not silence.</p>
+    <div class="stats-grid">
+      <div class="stat-card" *ngFor="let s of stats; let i = index" appScrollAnimate [animDelay]="i * 100">
+        <div class="stat-icon-wrap">{{ s.icon }}</div>
+        <div class="stat-num">{{ s.num }}</div>
+        <div class="stat-label">{{ s.label }}</div>
+        <p>{{ s.desc }}</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- HOW IT WORKS PREVIEW -->
-<section class="section hiw-preview">
+<!-- PROCESS -->
+<section class="section process-section">
   <div class="container">
     <div class="section-header" appScrollAnimate>
-      <div class="badge">⚙️ How It Works</div>
-      <h2>From Job Brief to Qualified Candidates in 4 Steps</h2>
-      <p>No complex onboarding. No IT team needed. You're up and running in 48 hours.</p>
+      <div class="badge">⚙️ How We Work</div>
+      <h2>From Brief to Live<br><span class="gradient-text">in 4 Steps</span></h2>
+      <p>A proven process that gets your AI systems live fast — zero disruption, maximum results.</p>
     </div>
-    <div class="steps">
-      <div class="step" *ngFor="let step of steps; let i = index" appScrollAnimate [animDelay]="i * 120">
-        <div class="step-number">{{ i + 1 }}</div>
-        <div class="step-icon">{{ step.icon }}</div>
-        <h3>{{ step.title }}</h3>
-        <p>{{ step.desc }}</p>
+    <div class="process-grid">
+      <div class="ps-card" *ngFor="let p of process; let i = index" appScrollAnimate [animDelay]="i * 120">
+        <div class="ps-num">{{ p.num }}</div>
+        <div class="ps-icon">{{ p.icon }}</div>
+        <h3>{{ p.title }}</h3>
+        <p>{{ p.desc }}</p>
       </div>
     </div>
-    <div class="hiw-cta" appScrollAnimate [animDelay]="100">
-      <a routerLink="/how-it-works" class="btn btn-outline">See the Full Process →</a>
+    <div class="process-cta" appScrollAnimate>
+      <a routerLink="/how-it-works" class="btn btn-glass">See Full Process →</a>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="section testi-section">
+  <div class="container">
+    <div class="section-header" appScrollAnimate>
+      <div class="badge">💬 Client Wins</div>
+      <h2>Real Results from <span class="gradient-text">Real Businesses</span></h2>
+    </div>
+    <div class="testi-grid">
+      <div class="testi-card" *ngFor="let t of testimonials; let i = index"
+           appScrollAnimate [animDelay]="i * 140"
+           [class]="'testi-card--' + t.color">
+        <div class="tc-quote">"</div>
+        <p class="tc-text">{{ t.quote }}</p>
+        <div class="tc-author">
+          <div class="tc-avatar" [class]="'av--' + t.color">{{ t.initials }}</div>
+          <div>
+            <div class="tc-name">{{ t.name }}</div>
+            <div class="tc-role">{{ t.role }} · {{ t.company }}</div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -206,14 +208,15 @@
 <section class="section final-cta">
   <div class="container">
     <div class="cta-box" appScrollAnimate>
-      <div class="badge badge-white">🎯 Ready to Automate?</div>
-      <h2>Stop Drowning in CVs.<br>Start Making Placements.</h2>
-      <p>Book a free 30-minute demo and see Ghost Ops AI Services live — tailored to your agency.</p>
-      <div class="cta-buttons">
-        <a routerLink="/contact" class="btn btn-white btn-lg">Book My Free Demo →</a>
-        <a routerLink="/services" class="btn btn-ghost-white btn-lg">See All Features</a>
+      <div class="cta-glow"></div>
+      <div class="badge badge-w">🚀 Ready to Dominate?</div>
+      <h2>Let's Build Your<br><span class="gradient-text-light">AI Advantage</span></h2>
+      <p>Book a free strategy call and discover how GhostOps can transform your business with custom AI.</p>
+      <div class="cta-btns">
+        <a routerLink="/contact" class="btn btn-white btn-lg">Book a Free Call →</a>
+        <a routerLink="/services" class="btn btn-glass-w btn-lg">Explore Services</a>
       </div>
-      <p class="cta-note">No commitment required · Setup in 48 hours · Cancel anytime</p>
+      <div class="cta-note">No commitment · Free strategy call · Reply within 2 hours</div>
     </div>
   </div>
 </section>
