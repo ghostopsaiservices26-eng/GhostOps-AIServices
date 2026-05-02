@@ -1,5 +1,5 @@
 .page-hero {
-  background: linear-gradient(160deg, rgba(9,14,31,0.80) 0%, rgba(17,13,51,0.72) 50%, rgba(9,14,31,0.80) 100%);
+  background: transparent;
   padding: 160px 0 100px;
   text-align: center;
   position: relative;
@@ -20,17 +20,7 @@
 .btn-ghost-white { background: rgba(255,255,255,0.1); color: #fff; border: 2px solid rgba(255,255,255,0.2); &:hover { background: rgba(255,255,255,0.2); } }
 .btn-lg { padding: 16px 32px; font-size: 16px; }
 
-.blob {
-  position: absolute; border-radius: 50%; filter: blur(80px); opacity: 0.12; pointer-events: none;
-  &.blob-1 { width: 500px; height: 500px; background: #3b82f6; top: -100px; left: -100px; }
-  &.blob-2 { width: 400px; height: 400px; background: #7c3aed; bottom: 0; right: -100px; }
-}
 
-.grid-pattern {
-  position: absolute; inset: 0; pointer-events: none;
-  background-image: linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
-  background-size: 48px 48px;
-}
 
 // TIMELINE
 .steps-section { background: #f8fafc; }

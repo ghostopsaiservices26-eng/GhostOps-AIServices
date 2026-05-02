@@ -1,7 +1,7 @@
 // ─── HERO ───────────────────────────────────────────────────────────────────
 .hero {
   min-height: 100vh;
-  background: linear-gradient(160deg, rgba(6,9,20,0.85) 0%, rgba(15,10,40,0.78) 50%, rgba(6,9,20,0.85) 100%);
+  background: transparent;
   display: flex;
   flex-direction: column;
   position: relative;
@@ -19,30 +19,7 @@
   }
 }
 
-.hero-bg {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  overflow: hidden;
-}
 
-.blob {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(90px);
-  &.blob-1 { width: 550px; height: 550px; background: #1d4ed8; opacity: 0.12; top: -120px; left: -100px; }
-  &.blob-2 { width: 450px; height: 450px; background: #7c3aed; opacity: 0.10; bottom: -80px; right: -80px; }
-  &.blob-3 { width: 300px; height: 300px; background: #06b6d4; opacity: 0.08; top: 40%; left: 40%; }
-}
-
-.grid-pattern {
-  position: absolute;
-  inset: 0;
-  background-image:
-    linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
-  background-size: 48px 48px;
-}
 
 // Hero Content
 .hero-content {
@@ -113,6 +90,8 @@
 .hero-visual {
   position: relative;
   z-index: 1;
+  // padding gives float-tags room to sit outside the dash-card edges
+  padding: 36px 36px 36px 36px;
 }
 
 .float-tag {
@@ -120,19 +99,30 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  background: rgba(255,255,255,0.06);
+  background: rgba(20, 24, 48, 0.85);
   backdrop-filter: blur(16px);
-  border: 1px solid rgba(255,255,255,0.12);
-  border-radius: 12px;
-  padding: 12px 16px;
-  z-index: 2;
+  border: 1px solid rgba(255,255,255,0.14);
+  border-radius: 14px;
+  padding: 12px 18px;
+  z-index: 10;
+  white-space: nowrap;
 
-  .ft-icon { font-size: 20px; }
-  .ft-num { font-size: 18px; font-weight: 800; color: #fff; font-family: 'Plus Jakarta Sans', sans-serif; }
-  .ft-lbl { font-size: 11px; color: #64748b; }
+  .ft-icon { font-size: 22px; }
+  .ft-num { font-size: 20px; font-weight: 800; color: #fff; font-family: 'Plus Jakarta Sans', sans-serif; line-height: 1; }
+  .ft-lbl { font-size: 11px; color: #64748b; margin-top: 2px; }
 
-  &.ftag-1 { top: -16px; right: 16px; animation: float 4s ease-in-out infinite; }
-  &.ftag-2 { bottom: 60px; left: -20px; animation: float 5s ease-in-out infinite 1s; }
+  // Top-right corner — slightly overlaps corner of dash-card only
+  &.ftag-1 {
+    top: 0;
+    right: 0;
+    animation: float 4s ease-in-out infinite;
+  }
+  // Bottom-left corner
+  &.ftag-2 {
+    bottom: 0;
+    left: 0;
+    animation: float 5s ease-in-out infinite 1.2s;
+  }
 }
 
 .dash-card {

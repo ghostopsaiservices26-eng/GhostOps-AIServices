@@ -1,5 +1,5 @@
 .page-hero {
-  background: linear-gradient(160deg, rgba(9,14,31,0.80) 0%, rgba(17,13,51,0.72) 50%, rgba(9,14,31,0.80) 100%);
+  background: transparent;
   padding: 160px 0 100px;
   text-align: center;
   position: relative;
@@ -22,11 +22,6 @@
   &.blob-2 { width: 400px; height: 400px; background: #7c3aed; bottom: 0; right: -100px; }
 }
 
-.grid-pattern {
-  position: absolute; inset: 0; pointer-events: none;
-  background-image: linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
-  background-size: 48px 48px;
-}
 
 // CONTACT GRID
 .contact-section { background: #f8fafc; }

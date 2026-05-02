@@ -25,7 +25,7 @@ html { scroll-behavior: smooth; }
 body {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   color: var(--text);
-  background: var(--bg);
+  background: #000;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
 }
@@ -192,9 +192,15 @@ img { max-width: 100%; display: block; }
 }
 
 // Page sections and content containers sit above the Three.js canvas
-app-navbar,
 main,
 app-footer {
   position: relative;
   z-index: 1;
 }
+
+app-navbar {
+  position: relative;
+  z-index: 9999;
+}
+
+main { background: transparent; }

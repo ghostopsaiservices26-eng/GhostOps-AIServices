@@ -13,6 +13,7 @@ import { HowItWorks } from './pages/how-it-works/how-it-works';
 import { Contact } from './pages/contact/contact';
 import { WebglShader } from './components/webgl-shader/webgl-shader';
 import { ThreeBackground } from './components/three-background/three-background';
+import { MountainScene } from './components/mountain-scene/mountain-scene';
 import { ScrollAnimate } from './directives/scroll-animate';
 
 @NgModule({
@@ -26,6 +27,7 @@ import { ScrollAnimate } from './directives/scroll-animate';
     Contact,
     WebglShader,
     ThreeBackground,
+    MountainScene,
     ScrollAnimate,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
