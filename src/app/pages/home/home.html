@@ -152,23 +152,26 @@
 </section>
 
 <!-- PROCESS -->
-<section class="section process-section">
+<section class="process-section" #processSection>
   <div class="container">
-    <div class="section-header" appScrollAnimate>
+    <div class="section-header ps-header">
       <div class="badge">⚙️ How We Work</div>
       <h2>From Brief to Live<br><span class="gradient-text">in 4 Steps</span></h2>
       <p>A proven process that gets your AI systems live fast — zero disruption, maximum results.</p>
     </div>
     <div class="process-grid">
-      <div class="ps-card" *ngFor="let p of process; let i = index" appScrollAnimate [animDelay]="i * 120">
+      <div class="pg-line">
+        <div class="pg-line-fill"></div>
+      </div>
+      <div class="ps-card" *ngFor="let p of process; let i = index">
         <div class="ps-num">{{ p.num }}</div>
         <div class="ps-icon">{{ p.icon }}</div>
         <h3>{{ p.title }}</h3>
         <p>{{ p.desc }}</p>
       </div>
     </div>
-    <div class="process-cta" appScrollAnimate>
-      <a routerLink="/how-it-works" class="btn btn-glass">See Full Process →</a>
+    <div class="process-cta">
+      <a routerLink="/how-it-works" class="btn btn-outline">See Full Process →</a>
     </div>
   </div>
 </section>

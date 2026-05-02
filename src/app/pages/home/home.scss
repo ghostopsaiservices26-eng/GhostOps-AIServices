@@ -345,22 +345,37 @@
 }
 
 // ─── PROCESS ─────────────────────────────────────────────────────────────────
-.process-section { background: #f8fafc; }
+.process-section {
+  background: #f8fafc;
+  padding: 96px 0;
+  // overflow must be visible so GSAP pin spacer works
+  overflow: visible;
+}
 
 .process-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 0;
   position: relative;
-  &::before {
-    content: '';
-    position: absolute;
-    top: 32px;
-    left: calc(12.5% + 20px);
-    right: calc(12.5% + 20px);
-    height: 2px;
-    background: linear-gradient(90deg, #1d4ed8, #7c3aed, #06b6d4);
-  }
+  padding-top: 0;
+}
+
+// Real element replaces ::before — GSAP animates width
+.pg-line {
+  position: absolute;
+  top: 32px;
+  left: calc(12.5% + 20px);
+  right: calc(12.5% + 20px);
+  height: 2px;
+  background: #e2e8f0;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.pg-line-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #1d4ed8, #7c3aed, #06b6d4);
 }
 
 .ps-card {
@@ -385,6 +400,11 @@
 }
 
 .process-cta { text-align: center; margin-top: 48px; }
+
+// hidden until GSAP animates them in
+.ps-header { opacity: 0; }
+.ps-card { opacity: 0; }
+// first card becomes visible immediately on pin — GSAP fromTo handles this
 
 // ─── TESTIMONIALS ────────────────────────────────────────────────────────────
 .testi-section { background: #fff; }
@@ -471,7 +491,8 @@
   .services-grid { grid-template-columns: 1fr; }
   .solutions-inner { grid-template-columns: 1fr; gap: 40px; }
   .stats-grid { grid-template-columns: repeat(2, 1fr); }
-  .process-grid { grid-template-columns: repeat(2, 1fr); gap: 32px; &::before { display: none; } }
+  .process-grid { grid-template-columns: repeat(2, 1fr); gap: 32px; }
+  .pg-line { display: none; }
   .testi-grid { grid-template-columns: 1fr; }
   .cta-box { padding: 48px 32px; }
 }

@@ -1,41 +1,55 @@
-import { Directive, ElementRef, Input, OnInit, OnDestroy } from '@angular/core';
+import { Directive, ElementRef, Input, OnInit, OnDestroy, NgZone } from '@angular/core';
+import gsap from 'gsap';
+import ScrollTrigger from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 @Directive({
   selector: '[appScrollAnimate]',
   standalone: false,
 })
 export class ScrollAnimate implements OnInit, OnDestroy {
-  /** Optional stagger delay in ms */
+  /** Stagger delay offset in seconds */
   @Input() animDelay = 0;
 
-  private observer!: IntersectionObserver;
+  private trigger!: ScrollTrigger;
 
-  constructor(private el: ElementRef<HTMLElement>) {}
+  constructor(private el: ElementRef<HTMLElement>, private zone: NgZone) {}
 
   ngOnInit(): void {
     const el = this.el.nativeElement;
-    el.classList.add('scroll-hidden');
-    if (this.animDelay) {
-      el.style.transitionDelay = `${this.animDelay}ms`;
-    }
 
-    this.observer = new IntersectionObserver(
-      entries => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            el.classList.remove('scroll-hidden');
-            el.classList.add('scroll-visible');
-            this.observer.unobserve(el);
-          }
-        });
-      },
-      { threshold: 0.08, rootMargin: '0px 0px -40px 0px' }
-    );
+    this.zone.runOutsideAngular(() => {
+      // Set initial state
+      gsap.set(el, {
+        opacity: 0,
+        y: 60,
+        rotateX: 14,
+        transformPerspective: 1200,
+        transformOrigin: 'center top',
+      });
 
-    this.observer.observe(el);
+      // Scrubbed scroll animation
+      gsap.to(el, {
+        opacity: 1,
+        y: 0,
+        rotateX: 0,
+        duration: 1,
+        delay: this.animDelay / 1000,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: el,
+          start: 'top 88%',
+          end: 'top 40%',
+          scrub: 0.8,
+        },
+      });
+    });
   }
 
   ngOnDestroy(): void {
-    if (this.observer) this.observer.disconnect();
+    ScrollTrigger.getAll().forEach(t => {
+      if (t.trigger === this.el.nativeElement) t.kill();
+    });
   }
 }

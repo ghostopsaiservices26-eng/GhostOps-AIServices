@@ -176,20 +176,9 @@ img { max-width: 100%; display: block; }
 .animate-fade-up { animation: fadeInUp 0.6s ease both; }
 .animate-float { animation: float 4s ease-in-out infinite; }
 
-// ─── 3D Scroll-reveal animations ───────────────────────────────────────────
-.scroll-hidden {
-  opacity: 0;
-  transform: perspective(1200px) translateY(70px) rotateX(14deg);
-  transition:
-    opacity    0.75s cubic-bezier(0.16, 1, 0.3, 1),
-    transform  0.75s cubic-bezier(0.16, 1, 0.3, 1);
-  will-change: opacity, transform;
-}
-
-.scroll-visible {
-  opacity: 1;
-  transform: perspective(1200px) translateY(0) rotateX(0deg);
-}
+// scroll-hidden/visible classes kept for safety but GSAP handles all animations
+.scroll-hidden { opacity: 0; }
+.scroll-visible { opacity: 1; }
 
 // Page sections and content containers sit above the Three.js canvas
 main,

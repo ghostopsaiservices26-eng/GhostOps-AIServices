@@ -1,4 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, AfterViewInit, ElementRef, ViewChild, NgZone } from '@angular/core';
+import gsap from 'gsap';
+import ScrollTrigger from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 @Component({
   selector: 'app-home',
@@ -6,7 +10,11 @@ import { Component } from '@angular/core';
   templateUrl: './home.html',
   styleUrl: './home.scss',
 })
-export class Home {
+export class Home implements AfterViewInit {
+  @ViewChild('processSection') processSectionRef!: ElementRef<HTMLElement>;
+
+  constructor(private zone: NgZone) {}
+
   services = [
     {
       icon: '🤖',
@@ -81,4 +89,63 @@ export class Home {
       color: 'cyan',
     },
   ];
+
+  ngAfterViewInit(): void {
+    this.zone.runOutsideAngular(() => {
+      setTimeout(() => this.initProcessAnimation(), 100);
+    });
+  }
+
+  private initProcessAnimation(): void {
+    const section = this.processSectionRef.nativeElement;
+    const cards = Array.from(section.querySelectorAll<HTMLElement>('.ps-card'));
+    const lineFill = section.querySelector<HTMLElement>('.pg-line-fill');
+    const header = section.querySelector<HTMLElement>('.ps-header');
+
+    if (!lineFill || cards.length === 0) return;
+
+    // Line starts at 0
+    gsap.set(lineFill, { width: '0%' });
+
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: section,
+        start: 'top top',
+        end: () => `+=${window.innerHeight * 3}`,
+        pin: true,
+        scrub: 1.2,
+        anticipatePin: 1,
+      },
+    });
+
+    // Header + card 01 appear immediately when section pins
+    if (header) {
+      tl.fromTo(header,
+        { opacity: 0, y: 20 },
+        { opacity: 1, y: 0, duration: 0.6 }
+      );
+    }
+    tl.fromTo(cards[0],
+      { opacity: 0, y: 30 },
+      { opacity: 1, y: 0, duration: 0.6 },
+      header ? '-=0.3' : '0'
+    );
+
+    // For steps 2, 3, 4: line fills to that step → card appears
+    const segments = cards.length - 1; // 3 segments connecting 4 steps
+    for (let i = 1; i < cards.length; i++) {
+      const fromPct = `${((i - 1) / segments) * 100}%`;
+      const toPct   = `${(i / segments) * 100}%`;
+
+      tl.fromTo(lineFill,
+        { width: fromPct },
+        { width: toPct, duration: 2, ease: 'power1.inOut' }
+      );
+      tl.fromTo(cards[i],
+        { opacity: 0, y: 30 },
+        { opacity: 1, y: 0, duration: 0.8 },
+        '-=0.4'  // card appears just as line reaches the circle
+      );
+    }
+  }
 }
