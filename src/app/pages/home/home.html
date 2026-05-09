@@ -1,9 +1,13 @@
 <!-- HERO -->
 <section class="hero">
+  <!-- Decorative background orbs -->
+  <div class="hero-bg-orb orb-1"></div>
+  <div class="hero-bg-orb orb-2"></div>
+  <div class="hero-ring"></div>
   <div class="container">
     <div class="hero-content" appScrollAnimate>
       <div class="badge">⚡ Elite AI Automation Agency</div>
-      <h1>Automate.<br><span class="gradient-text">Scale.</span><br>Dominate.</h1>
+      <h1>Automate.<br><span class="gradient-text tw-word">{{ heroWord }}</span><br>Dominate.</h1>
       <p class="hero-sub">GhostOps builds custom AI systems, deploys intelligent agents, and creates high-converting websites — so your business runs smarter, faster, and 24/7 without extra headcount.</p>
       <div class="hero-ctas">
         <a routerLink="/contact" class="btn btn-primary btn-lg btn-glow">Book a Call →</a>
@@ -147,7 +151,9 @@
       <div class="stat-wrap" *ngFor="let s of stats; let i = index" appScrollAnimate [animDelay]="i * 100">
         <div class="stat-card" appTilt [tiltMax]="7" [tiltScale]="1.03">
           <div class="stat-icon-wrap">{{ s.icon }}</div>
-          <div class="stat-num">{{ s.num }}</div>
+          <div class="stat-num"
+               [attr.data-target]="s.target !== null ? s.target : null"
+               [attr.data-suffix]="s.target !== null ? s.suffix : null">{{ s.num }}</div>
           <div class="stat-label">{{ s.label }}</div>
           <p>{{ s.desc }}</p>
         </div>
@@ -212,6 +218,14 @@
   <div class="container">
     <div class="cta-box" appScrollAnimate>
       <div class="cta-glow"></div>
+      <!-- SVG circuit decoration -->
+      <svg class="circuit-svg" viewBox="0 0 800 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path class="cp cp-1" d="M0,100 L120,100 L120,40 L240,40 L240,100 L400,100 L400,160 L520,160 L520,100 L640,100 L640,40 L800,40"/>
+        <path class="cp cp-2" d="M0,160 L100,160 L100,100 L200,100 L200,40 L360,40 L360,100 L480,100 L480,160 L600,160 L600,100 L800,100"/>
+        <circle class="cd" r="3"><animateMotion dur="4s" repeatCount="indefinite" path="M0,100 L120,100 L120,40 L240,40 L240,100 L400,100 L400,160 L520,160 L520,100 L640,100 L640,40 L800,40"/></circle>
+        <circle class="cd cd-2" r="3"><animateMotion dur="5.5s" repeatCount="indefinite" begin="1.2s" path="M0,160 L100,160 L100,100 L200,100 L200,40 L360,40 L360,100 L480,100 L480,160 L600,160 L600,100 L800,100"/></circle>
+        <circle class="cd cd-3" r="2"><animateMotion dur="3.2s" repeatCount="indefinite" begin="2.4s" path="M0,100 L120,100 L120,40 L240,40 L240,100 L400,100 L400,160 L520,160 L520,100 L640,100 L640,40 L800,40"/></circle>
+      </svg>
       <div class="badge badge-w">🚀 Ready to Dominate?</div>
       <h2>Let's Build Your<br><span class="gradient-text-light">AI Advantage</span></h2>
       <p>Book a free strategy call and discover how GhostOps can transform your business with custom AI.</p>

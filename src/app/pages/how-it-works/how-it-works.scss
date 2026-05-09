@@ -126,7 +126,9 @@
   border: 1px solid #e2e8f0;
   border-radius: 16px;
   overflow: hidden;
-  box-shadow: 0 8px 40px rgba(15,23,42,0.06);
+  box-shadow: var(--neuro-shadow);
+  will-change: transform;
+  transition: box-shadow 0.3s ease;
 }
 
 .vb-header {
@@ -175,14 +177,17 @@
   gap: 24px;
 }
 
+// Transparent wrapper for GSAP animate + tilt separation
+.metric-wrap { display: contents; }
+
 .metric-card {
   background: rgba(255,255,255,0.05);
   border: 1px solid rgba(255,255,255,0.1);
   border-radius: 20px;
   padding: 32px;
   text-align: center;
-  transition: all 0.3s;
-  &:hover { background: rgba(255,255,255,0.08); transform: translateY(-4px); }
+  transition: background 0.3s, border-color 0.3s;
+  will-change: transform;
 }
 
 .metric-icon { font-size: 32px; margin-bottom: 12px; }
@@ -198,16 +203,27 @@
   grid-template-columns: repeat(4, 1fr);
   gap: 0;
   position: relative;
+}
 
-  &::before {
-    content: '';
-    position: absolute;
-    top: 40px;
-    left: calc(12.5% + 24px);
-    right: calc(12.5% + 24px);
-    height: 2px;
-    background: linear-gradient(90deg, #1d4ed8, #7c3aed);
-  }
+// Scroll-driven line track + fill
+.ob-line-track {
+  position: absolute;
+  top: 40px;                      // aligns with ob-num centre
+  left: calc(12.5% + 40px);      // starts from centre of first circle
+  right: calc(12.5% + 40px);     // ends at centre of last circle
+  height: 2px;
+  background: rgba(29, 78, 216, 0.15);  // faint track
+  border-radius: 2px;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.ob-line-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #1d4ed8, #7c3aed);
+  border-radius: 2px;
+  box-shadow: 0 0 8px rgba(59, 130, 246, 0.4);
 }
 
 .ob-step {
@@ -220,7 +236,7 @@
   width: 80px;
   height: 80px;
   border-radius: 50%;
-  background: #f8fafc;
+  background: #fff;
   border: 2px solid #e2e8f0;
   display: flex;
   align-items: center;
@@ -231,8 +247,8 @@
   color: #1d4ed8;
   font-family: 'Plus Jakarta Sans', sans-serif;
   position: relative;
-  z-index: 1;
-  background: #fff;
+  z-index: 2;   // sits above the fill line
+  transition: border-color 0.3s, box-shadow 0.3s;
 }
 
 .ob-icon { font-size: 28px; margin-bottom: 12px; }
@@ -254,6 +270,24 @@
   .blob { opacity: 0.15; &.blob-1 { width: 400px; height: 400px; top: -150px; left: -100px; } &.blob-2 { width: 300px; height: 300px; bottom: -100px; right: -50px; } }
 }
 
+// Circuit SVG in CTA
+.hiw-circuit {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  width: 100%; height: 160px;
+  pointer-events: none;
+  opacity: 0.14;
+}
+.hcp {
+  fill: none; stroke-width: 1.2; stroke-linecap: round; stroke-linejoin: round;
+  &.hcp-1 { stroke: #3b82f6; }
+  &.hcp-2 { stroke: #a78bfa; }
+}
+.hcd {
+  fill: #3b82f6; filter: drop-shadow(0 0 4px #3b82f6);
+  &.hcd-2 { fill: #a78bfa; filter: drop-shadow(0 0 4px #a78bfa); }
+}
+
 .cta-content { position: relative; z-index: 1; }
 .badge-white { background: rgba(255,255,255,0.1); color: #a5b4fc; border-color: rgba(165,180,252,0.2); margin-bottom: 20px; }
 .cta-box h2 { font-size: clamp(24px, 3vw, 40px); color: #fff; margin-bottom: 16px; }
@@ -267,7 +301,8 @@
   .step-card { grid-template-columns: 1fr; gap: 32px; &.reverse { .step-content { order: 1; } .step-visual { order: 2; } } }
   .timeline-step { padding: 32px 0; }
   .metrics-grid { grid-template-columns: repeat(2, 1fr); }
-  .onboarding-steps { grid-template-columns: repeat(2, 1fr); gap: 32px; &::before { display: none; } }
+  .onboarding-steps { grid-template-columns: repeat(2, 1fr); gap: 32px; }
+  .ob-line-track { display: none; }
   .cta-box { padding: 48px 32px; }
 }
 

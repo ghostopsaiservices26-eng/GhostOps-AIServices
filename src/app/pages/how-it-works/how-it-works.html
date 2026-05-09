@@ -30,7 +30,7 @@
             <div class="step-time"><span>⏱</span><span>{{ step.time }}</span></div>
           </div>
           <div class="step-visual">
-            <div class="visual-box">
+            <div class="visual-box" appTilt [tiltMax]="6" [tiltScale]="1.015">
               <div class="vb-header">{{ step.visualTitle }}</div>
               <div class="vb-body">
                 <div class="vb-row" *ngFor="let row of step.visual">
@@ -55,18 +55,20 @@
       <p>Average outcomes across GhostOps clients in their first 90 days.</p>
     </div>
     <div class="metrics-grid">
-      <div class="metric-card" *ngFor="let m of metrics; let i = index" appScrollAnimate [animDelay]="i * 70">
-        <div class="metric-icon">{{ m.icon }}</div>
-        <div class="metric-num">{{ m.num }}</div>
-        <div class="metric-label">{{ m.label }}</div>
-        <div class="metric-desc">{{ m.desc }}</div>
+      <div class="metric-wrap" *ngFor="let m of metrics; let i = index" appScrollAnimate [animDelay]="i * 70">
+        <div class="metric-card" appTilt [tiltMax]="7" [tiltScale]="1.03">
+          <div class="metric-icon">{{ m.icon }}</div>
+          <div class="metric-num">{{ m.num }}</div>
+          <div class="metric-label">{{ m.label }}</div>
+          <div class="metric-desc">{{ m.desc }}</div>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
 <!-- ONBOARDING -->
-<section class="section onboarding-section">
+<section class="section onboarding-section" #obSection>
   <div class="container">
     <div class="section-header" appScrollAnimate>
       <div class="badge">🚀 Getting Started</div>
@@ -74,7 +76,9 @@
       <p>Our team handles everything — you just show up and start using your AI.</p>
     </div>
     <div class="onboarding-steps">
-      <div class="ob-step" *ngFor="let ob of onboarding; let i = index" appScrollAnimate [animDelay]="i * 100">
+      <!-- animated line: track + fill -->
+      <div class="ob-line-track"><div class="ob-line-fill" #obLineFill></div></div>
+      <div class="ob-step" *ngFor="let ob of onboarding; let i = index">
         <div class="ob-num">{{ i + 1 }}</div>
         <div class="ob-icon">{{ ob.icon }}</div>
         <h3>{{ ob.title }}</h3>
@@ -90,6 +94,13 @@
   <div class="container">
     <div class="cta-box" appScrollAnimate>
       <div class="blob blob-1"></div><div class="blob blob-2"></div>
+      <!-- circuit -->
+      <svg class="hiw-circuit" viewBox="0 0 800 160" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path class="hcp hcp-1" d="M0,80 L140,80 L140,30 L280,30 L280,80 L440,80 L440,130 L580,130 L580,80 L800,80"/>
+        <path class="hcp hcp-2" d="M0,130 L100,130 L100,80 L220,80 L220,30 L380,30 L380,80 L500,80 L500,130 L660,130 L660,80 L800,80"/>
+        <circle class="hcd" r="3.5"><animateMotion dur="4.5s" repeatCount="indefinite" path="M0,80 L140,80 L140,30 L280,30 L280,80 L440,80 L440,130 L580,130 L580,80 L800,80"/></circle>
+        <circle class="hcd hcd-2" r="2.5"><animateMotion dur="6s" repeatCount="indefinite" begin="1.8s" path="M0,130 L100,130 L100,80 L220,80 L220,30 L380,30 L380,80 L500,80 L500,130 L660,130 L660,80 L800,80"/></circle>
+      </svg>
       <div class="cta-content">
         <div class="badge badge-white">🎯 Ready to Start?</div>
         <h2>Book a Free Strategy Call</h2>

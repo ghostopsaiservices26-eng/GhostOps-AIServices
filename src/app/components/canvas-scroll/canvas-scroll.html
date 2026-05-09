@@ -2,38 +2,95 @@
   <div class="cs-sticky">
     <canvas #canvas></canvas>
 
+    <!-- Top badge -->
     <div class="cs-badge">
-      <span class="badge">⚡ Live AI Operations</span>
+      <span class="csbadge-inner">
+        <span class="csbadge-dot"></span>
+        Live AI Operations
+      </span>
     </div>
 
-    <div class="cs-anno cs-anno--tl" [class.active]="anno1">
-      <div class="ca-num">8</div>
-      <div class="ca-label">AI Agents<br>Connected</div>
+    <!-- TL: Agents panel -->
+    <div class="cs-panel cs-panel--tl" [class.active]="anno1">
+      <div class="cp-header">
+        <span class="cp-dot cp-dot--blue"></span>
+        <span class="cp-title">AGENT STATUS</span>
+      </div>
+      <div class="cp-metric">
+        <span class="cp-num">8</span>
+        <span class="cp-unit">agents</span>
+      </div>
+      <div class="cp-label">All Connected</div>
+      <div class="cp-bar-track"><div class="cp-bar-fill" style="width:100%"></div></div>
     </div>
 
-    <div class="cs-anno cs-anno--tr" [class.active]="anno2">
-      <div class="ca-icon">⚡</div>
-      <div class="ca-val">1,847</div>
-      <div class="ca-label">Tasks Today</div>
+    <!-- TR: Tasks panel -->
+    <div class="cs-panel cs-panel--tr" [class.active]="anno2">
+      <div class="cp-header">
+        <span class="cp-dot cp-dot--amber"></span>
+        <span class="cp-title">THROUGHPUT</span>
+      </div>
+      <div class="cp-metric">
+        <span class="cp-num">1,847</span>
+        <span class="cp-unit">tasks</span>
+      </div>
+      <div class="cp-label">Processed today</div>
+      <div class="cp-sparkline">
+        <svg viewBox="0 0 80 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <polyline points="0,20 10,14 20,16 30,8 40,10 50,4 60,6 70,2 80,4"
+            stroke="#3b82f6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          <polyline points="0,20 10,14 20,16 30,8 40,10 50,4 60,6 70,2 80,4 80,24 0,24"
+            fill="url(#sparkFill)" stroke="none"/>
+          <defs>
+            <linearGradient id="sparkFill" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#3b82f6" stop-opacity="0.25"/>
+              <stop offset="100%" stop-color="#3b82f6" stop-opacity="0"/>
+            </linearGradient>
+          </defs>
+        </svg>
+      </div>
     </div>
 
-    <div class="cs-anno cs-anno--bl" [class.active]="anno3">
-      <div class="ca-icon">🔄</div>
-      <div class="ca-val">24/7</div>
-      <div class="ca-label">Always On</div>
+    <!-- BL: Uptime panel -->
+    <div class="cs-panel cs-panel--bl" [class.active]="anno3">
+      <div class="cp-header">
+        <span class="cp-dot cp-dot--green"></span>
+        <span class="cp-title">UPTIME</span>
+      </div>
+      <div class="cp-metric">
+        <span class="cp-num">99.9</span>
+        <span class="cp-unit">%</span>
+      </div>
+      <div class="cp-label">All systems nominal</div>
+      <div class="cp-tags">
+        <span class="cp-tag cp-tag--green">● Ops</span>
+        <span class="cp-tag cp-tag--green">● API</span>
+        <span class="cp-tag cp-tag--green">● ML</span>
+      </div>
     </div>
 
-    <div class="cs-anno cs-anno--br" [class.active]="anno3">
-      <div class="ca-icon">✅</div>
-      <div class="ca-val">99.9%</div>
-      <div class="ca-label">Uptime</div>
+    <!-- BR: Always on panel -->
+    <div class="cs-panel cs-panel--br" [class.active]="anno3">
+      <div class="cp-header">
+        <span class="cp-dot cp-dot--violet"></span>
+        <span class="cp-title">AVAILABILITY</span>
+      </div>
+      <div class="cp-metric">
+        <span class="cp-num">24<span class="cp-slash">/</span>7</span>
+      </div>
+      <div class="cp-label">Always running</div>
+      <div class="cp-pulse-row">
+        <span class="cp-pulse-bar" *ngFor="let b of [1,2,3,4,5,6,7,8]"></span>
+      </div>
     </div>
 
+    <!-- Final CTA -->
     <div class="cs-cta" [class.active]="showCta">
       <h2>Your AI Network,<br><span class="cs-gradient">Live in 48 Hours</span></h2>
       <a routerLink="/contact" class="btn btn-primary btn-lg">Book a Free Call →</a>
     </div>
 
+    <!-- Scroll hint -->
     <div class="cs-hint" [class.hidden]="!showHint">
       <span>Scroll to explore</span>
       <div class="cs-arrow">↓</div>

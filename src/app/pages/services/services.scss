@@ -54,6 +54,8 @@
 .visual-card {
   border-radius: 20px;
   padding: 32px;
+  will-change: transform;
+  transition: box-shadow 0.3s ease;
   &.vc--blue { background: linear-gradient(160deg,#0f172a,#0d1f3c); border: 1px solid rgba(59,130,246,0.2); }
   &.vc--purple { background: linear-gradient(160deg,#0f172a,#140d26); border: 1px solid rgba(124,58,237,0.2); }
   &.vc--cyan { background: linear-gradient(160deg,#0f172a,#071e24); border: 1px solid rgba(6,182,212,0.2); }
@@ -88,14 +90,34 @@
   &:hover { border-color: #1d4ed8; color: #1d4ed8; transform: translateY(-2px); box-shadow: 0 4px 16px rgba(29,78,216,0.08); }
 }
 
+// Circuit SVG inside services CTA
+.svc-circuit {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  width: 100%; height: 120px;
+  pointer-events: none;
+  opacity: 0.12;
+}
+.cp {
+  fill: none; stroke-width: 1.2; stroke-linecap: round; stroke-linejoin: round;
+  &.cp-1 { stroke: #1d4ed8; }
+  &.cp-2 { stroke: #7c3aed; }
+}
+.cd {
+  fill: #1d4ed8; filter: drop-shadow(0 0 4px #1d4ed8);
+  &.cd-2 { fill: #7c3aed; filter: drop-shadow(0 0 4px #7c3aed); }
+}
+
 // CTA
 .services-cta { background: linear-gradient(135deg,#eff6ff,#f5f3ff); }
 .cta-inner {
   display: flex; align-items: center; justify-content: space-between; gap: 32px; flex-wrap: wrap;
   background: #fff; border-radius: 20px; padding: 48px;
-  border: 1px solid rgba(29,78,216,0.1); box-shadow: 0 8px 40px rgba(29,78,216,0.05);
-  h2 { font-size: 28px; color: #0f172a; margin-bottom: 8px; }
-  p { font-size: 16px; color: #64748b; }
+  position: relative; overflow: hidden;
+  border: 1px solid rgba(29,78,216,0.1);
+  box-shadow: var(--neuro-shadow);
+  h2 { font-size: 28px; color: #0f172a; margin-bottom: 8px; position: relative; }
+  p { font-size: 16px; color: #64748b; position: relative; }
 }
 
 @media (max-width: 1024px) {

@@ -29,7 +29,7 @@
         </div>
       </div>
       <div class="svc-visual">
-        <div class="visual-card" [class]="'vc--' + svc.accent">
+        <div class="visual-card" [class]="'vc--' + svc.accent" appTilt [tiltMax]="8" [tiltScale]="1.02">
           <div class="vc-icon">{{ svc.icon }}</div>
           <div class="vc-label">{{ svc.visualLabel }}</div>
           <div class="vc-bars">
@@ -63,6 +63,13 @@
 <section class="section-sm services-cta">
   <div class="container">
     <div class="cta-inner" appScrollAnimate>
+      <!-- circuit decoration -->
+      <svg class="svc-circuit" viewBox="0 0 800 120" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path class="cp cp-1" d="M0,60 L100,60 L100,20 L200,20 L200,60 L350,60 L350,100 L450,100 L450,60 L600,60 L600,20 L800,20"/>
+        <path class="cp cp-2" d="M0,100 L80,100 L80,60 L180,60 L180,20 L300,20 L300,60 L420,60 L420,100 L560,100 L560,60 L800,60"/>
+        <circle class="cd" r="3"><animateMotion dur="4s" repeatCount="indefinite" path="M0,60 L100,60 L100,20 L200,20 L200,60 L350,60 L350,100 L450,100 L450,60 L600,60 L600,20 L800,20"/></circle>
+        <circle class="cd cd-2" r="2.5"><animateMotion dur="5s" repeatCount="indefinite" begin="1.5s" path="M0,100 L80,100 L80,60 L180,60 L180,20 L300,20 L300,60 L420,60 L420,100 L560,100 L560,60 L800,60"/></circle>
+      </svg>
       <div>
         <h2>Ready to Get Started?</h2>
         <p>Book a free strategy call — we'll show you exactly what we'd build for your business.</p>

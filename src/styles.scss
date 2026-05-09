@@ -105,6 +105,14 @@ img { max-width: 100%; display: block; }
   &:hover { background: rgba(255,255,255,0.14); color: #fff; }
 }
 
+.btn-glass-w {
+  background: rgba(255,255,255,0.08);
+  color: #fff;
+  border: 1px solid rgba(255,255,255,0.22);
+  backdrop-filter: blur(8px);
+  &:hover { background: rgba(255,255,255,0.18); }
+}
+
 .section { padding: 96px 0; }
 .section-sm { padding: 64px 0; }
 
@@ -188,6 +196,27 @@ img { max-width: 100%; display: block; }
 // scroll-hidden/visible classes kept for safety but GSAP handles all animations
 .scroll-hidden { opacity: 0; }
 .scroll-visible { opacity: 1; }
+
+// ── Global CSS 3D / animation utilities ────────────────────────────────────
+
+// Spinning ring / orbit badge
+@keyframes spin-slow   { to { transform: rotate(360deg); } }
+@keyframes spin-rev    { to { transform: rotate(-360deg); } }
+@keyframes orbit       { to { transform: rotate(360deg) translateX(60px) rotate(-360deg); } }
+@keyframes pulse-scale { 0%,100% { transform: scale(1); } 50% { transform: scale(1.07); } }
+@keyframes glow-pulse  {
+  0%,100% { box-shadow: 0 0 0 0 rgba(59,130,246,0.3); }
+  50%     { box-shadow: 0 0 0 14px rgba(59,130,246,0); }
+}
+@keyframes slide-in-up {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+// Globally disable tilt on touch devices
+@media (max-width: 768px) {
+  [appTilt] { transform: none !important; transition: none !important; }
+}
 
 // Page sections and content containers sit above the Three.js canvas
 main,

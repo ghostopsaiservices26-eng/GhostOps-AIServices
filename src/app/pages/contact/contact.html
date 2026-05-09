@@ -14,7 +14,7 @@
 
       <!-- FORM -->
       <div class="form-col" appScrollAnimate>
-        <div class="form-card" *ngIf="!submitted">
+        <div class="form-card" *ngIf="!submitted" appTilt [tiltMax]="4" [tiltScale]="1.008">
           <div class="form-header">
             <h2>Book Your Free Strategy Call</h2>
             <p>Fill in your details and our team will reach out within 2 hours to confirm your slot.</p>
@@ -79,7 +79,7 @@
 
       <!-- SIDEBAR -->
       <div class="sidebar-col" appScrollAnimate [animDelay]="150">
-        <div class="sidebar-card demo-includes">
+        <div class="sidebar-card demo-includes" appTilt [tiltMax]="5" [tiltScale]="1.01">
           <h3>What's Included in Your Demo</h3>
           <ul>
             <li *ngFor="let item of demoIncludes">
@@ -92,7 +92,7 @@
           </ul>
         </div>
 
-        <div class="sidebar-card calendar-card">
+        <div class="sidebar-card calendar-card" appTilt [tiltMax]="5" [tiltScale]="1.01">
           <div class="cal-icon">📅</div>
           <h3>Prefer to Book Directly?</h3>
           <p>Use our calendar to pick a time that works for you — no waiting required.</p>
@@ -100,7 +100,7 @@
           <p class="cal-note">Powered by Calendly · Free slots available this week</p>
         </div>
 
-        <div class="sidebar-card trust-card">
+        <div class="sidebar-card trust-card" appTilt [tiltMax]="5" [tiltScale]="1.01">
           <h3>Trusted by Recruitment Teams</h3>
           <div class="trust-badges">
             <div class="trust-badge" *ngFor="let badge of trustBadges">

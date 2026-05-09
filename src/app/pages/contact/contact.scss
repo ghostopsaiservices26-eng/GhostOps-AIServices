@@ -39,7 +39,9 @@
   border-radius: 24px;
   padding: 48px;
   border: 1px solid #e2e8f0;
-  box-shadow: 0 8px 40px rgba(15,23,42,0.06);
+  box-shadow: var(--neuro-shadow);
+  will-change: transform;
+  transition: box-shadow 0.3s ease;
 }
 
 .form-header {
@@ -149,7 +151,9 @@
   border-radius: 20px;
   padding: 28px;
   border: 1px solid #e2e8f0;
-  box-shadow: 0 4px 20px rgba(15,23,42,0.04);
+  box-shadow: var(--neuro-shadow);
+  will-change: transform;
+  transition: box-shadow 0.3s ease;
 
   h3 { font-size: 17px; color: #0f172a; margin-bottom: 20px; }
 }

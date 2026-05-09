@@ -1,4 +1,80 @@
 // ─── HERO ───────────────────────────────────────────────────────────────────
+
+// Typewriter word
+.tw-word {
+  display: inline-block;
+  transition: opacity 0.32s ease, transform 0.32s ease;
+  &.tw-exit  { opacity: 0; transform: translateY(12px) scale(0.95); }
+  &.tw-enter { opacity: 0; transform: translateY(-12px) scale(0.95);
+    animation: tw-in 0.35s ease forwards; }
+}
+@keyframes tw-in {
+  from { opacity: 0; transform: translateY(-12px) scale(0.95); }
+  to   { opacity: 1; transform: translateY(0)     scale(1); }
+}
+
+// Background decorative orbs
+.hero-bg-orb {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  filter: blur(100px);
+  opacity: 0.18;
+  &.orb-1 {
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, #3b82f6 0%, transparent 70%);
+    top: -200px; right: -100px;
+    animation: orb-drift 10s ease-in-out infinite alternate;
+  }
+  &.orb-2 {
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, #7c3aed 0%, transparent 70%);
+    bottom: -100px; left: -80px;
+    animation: orb-drift 13s ease-in-out infinite alternate-reverse;
+  }
+}
+
+// Spinning ring
+.hero-ring {
+  position: absolute;
+  width: 700px; height: 700px;
+  top: 50%; right: -240px;
+  transform: translateY(-50%);
+  border-radius: 50%;
+  border: 1px solid rgba(59,130,246,0.12);
+  pointer-events: none;
+  animation: ring-spin 28s linear infinite;
+  &::before {
+    content: '';
+    position: absolute;
+    width: 10px; height: 10px;
+    background: #3b82f6;
+    border-radius: 50%;
+    top: -5px; left: 50%;
+    transform: translateX(-50%);
+    box-shadow: 0 0 12px 4px rgba(59,130,246,0.5);
+  }
+  &::after {
+    content: '';
+    position: absolute;
+    width: 7px; height: 7px;
+    background: #a78bfa;
+    border-radius: 50%;
+    bottom: -4px; left: 30%;
+    box-shadow: 0 0 10px 3px rgba(167,139,250,0.5);
+  }
+}
+
+@keyframes orb-drift {
+  from { transform: translate(0, 0) scale(1); }
+  to   { transform: translate(30px, 20px) scale(1.08); }
+}
+
+@keyframes ring-spin {
+  from { transform: translateY(-50%) rotate(0deg); }
+  to   { transform: translateY(-50%) rotate(360deg); }
+}
+
 .hero {
   min-height: 100vh;
   background: transparent;
@@ -489,6 +565,29 @@
 }
 
 .cta-note { font-size: 13px; color: #475569; position: relative; }
+
+// ── Circuit SVG (shared style) ───────────────────────────────────────────────
+.circuit-svg {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  width: 100%; height: 200px;
+  pointer-events: none;
+  opacity: 0.18;
+}
+.cp {
+  fill: none;
+  stroke-width: 1.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  &.cp-1 { stroke: #3b82f6; }
+  &.cp-2 { stroke: #7c3aed; }
+}
+.cd {
+  fill: #3b82f6;
+  filter: drop-shadow(0 0 4px #3b82f6);
+  &.cd-2 { fill: #a78bfa; filter: drop-shadow(0 0 4px #a78bfa); }
+  &.cd-3 { fill: #06b6d4; filter: drop-shadow(0 0 3px #06b6d4); }
+}
 
 // ─── RESPONSIVE ──────────────────────────────────────────────────────────────
 @media (max-width: 1024px) {
