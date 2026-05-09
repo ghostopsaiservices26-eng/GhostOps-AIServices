@@ -13,23 +13,9 @@
         <a routerLink="/contact" class="btn btn-primary btn-lg btn-glow">Book a Call →</a>
         <a routerLink="/services" class="btn btn-glass btn-lg">View Services</a>
       </div>
-      <div class="hero-trust">
-        <span class="ti"><span>⚡</span> 50+ AI Systems Built</span>
-        <span class="ti"><span>🚀</span> 48h Onboarding</span>
-        <span class="ti"><span>🔒</span> Enterprise Security</span>
-      </div>
     </div>
 
     <div class="hero-visual" appScrollAnimate [animDelay]="180">
-      <div class="float-tag ftag-1">
-        <span class="ft-icon">📈</span>
-        <div><div class="ft-num">247%</div><div class="ft-lbl">Avg. ROI</div></div>
-      </div>
-      <div class="float-tag ftag-2">
-        <span class="ft-icon">⚡</span>
-        <div><div class="ft-num">80%</div><div class="ft-lbl">Time Saved</div></div>
-      </div>
-
       <div class="dash-card">
         <div class="dc-head">
           <div class="dc-dots"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span></div>
@@ -60,9 +46,9 @@
           </div>
         </div>
         <div class="dc-metrics">
-          <div class="dc-m"><span class="dm-n">1,847</span><span class="dm-l">Tasks Today</span></div>
-          <div class="dc-m"><span class="dm-n">99.9%</span><span class="dm-l">Uptime</span></div>
-          <div class="dc-m"><span class="dm-n">0</span><span class="dm-l">Errors</span></div>
+          <div class="dc-m"><span class="dm-n dm-live">Live</span><span class="dm-l">Status</span></div>
+          <div class="dc-m"><span class="dm-n">24/7</span><span class="dm-l">Always On</span></div>
+          <div class="dc-m"><span class="dm-n">0</span><span class="dm-l">Downtime</span></div>
         </div>
       </div>
     </div>
@@ -124,14 +110,14 @@
             <span class="rc-live">● Live</span>
           </div>
           <div class="rc-body">
-            <div class="rc-row"><span class="rc-name">Alex Johnson</span><div class="rc-bar-wrap"><div class="rc-bar" style="width:94%"></div></div><span class="rc-score match">94%</span></div>
-            <div class="rc-row"><span class="rc-name">Maria Santos</span><div class="rc-bar-wrap"><div class="rc-bar" style="width:89%"></div></div><span class="rc-score match">89%</span></div>
-            <div class="rc-row"><span class="rc-name">David Park</span><div class="rc-bar-wrap"><div class="rc-bar" style="width:82%"></div></div><span class="rc-score match">82%</span></div>
-            <div class="rc-row"><span class="rc-name">Lisa Chen</span><div class="rc-bar-wrap"><div class="rc-bar" style="width:76%"></div></div><span class="rc-score review">76%</span></div>
+            <div class="rc-row"><span class="rc-name">Candidate A</span><div class="rc-bar-wrap"><div class="rc-bar" style="width:94%"></div></div><span class="rc-score match">Strong</span></div>
+            <div class="rc-row"><span class="rc-name">Candidate B</span><div class="rc-bar-wrap"><div class="rc-bar" style="width:89%"></div></div><span class="rc-score match">Strong</span></div>
+            <div class="rc-row"><span class="rc-name">Candidate C</span><div class="rc-bar-wrap"><div class="rc-bar" style="width:82%"></div></div><span class="rc-score match">Good</span></div>
+            <div class="rc-row"><span class="rc-name">Candidate D</span><div class="rc-bar-wrap"><div class="rc-bar" style="width:76%"></div></div><span class="rc-score review">Review</span></div>
           </div>
           <div class="rc-foot">
-            <span>✓ 247 sourced today</span>
-            <span>↑ 3.2h avg shortlist</span>
+            <span>✓ AI screened</span>
+            <span>↑ Ranked by fit</span>
           </div>
         </div>
       </div>
@@ -139,28 +125,6 @@
   </div>
 </section>
 
-<!-- STATS -->
-<section class="section stats-section">
-  <div class="container">
-    <div class="section-header" appScrollAnimate>
-      <div class="badge">📈 The Impact</div>
-      <h2>Built to <span class="gradient-text">Deliver Results</span></h2>
-      <p>Clients see measurable impact within 30 days — not months.</p>
-    </div>
-    <div class="stats-grid">
-      <div class="stat-wrap" *ngFor="let s of stats; let i = index" appScrollAnimate [animDelay]="i * 100">
-        <div class="stat-card" appTilt [tiltMax]="7" [tiltScale]="1.03">
-          <div class="stat-icon-wrap">{{ s.icon }}</div>
-          <div class="stat-num"
-               [attr.data-target]="s.target !== null ? s.target : null"
-               [attr.data-suffix]="s.target !== null ? s.suffix : null">{{ s.num }}</div>
-          <div class="stat-label">{{ s.label }}</div>
-          <p>{{ s.desc }}</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
 
 <!-- PROCESS -->
 <section class="process-section" #processSection>
@@ -187,31 +151,6 @@
   </div>
 </section>
 
-<!-- TESTIMONIALS -->
-<section class="section testi-section">
-  <div class="container">
-    <div class="section-header" appScrollAnimate>
-      <div class="badge">💬 Client Wins</div>
-      <h2>Real Results from <span class="gradient-text">Real Businesses</span></h2>
-    </div>
-    <div class="testi-grid">
-      <div class="testi-wrap" *ngFor="let t of testimonials; let i = index" appScrollAnimate [animDelay]="i * 140">
-      <div class="testi-card" appTilt [tiltMax]="6" [tiltScale]="1.02"
-           [class]="'testi-card--' + t.color">
-        <div class="tc-quote">"</div>
-        <p class="tc-text">{{ t.quote }}</p>
-        <div class="tc-author">
-          <div class="tc-avatar" [class]="'av--' + t.color">{{ t.initials }}</div>
-          <div>
-            <div class="tc-name">{{ t.name }}</div>
-            <div class="tc-role">{{ t.role }} · {{ t.company }}</div>
-          </div>
-        </div>
-      </div>
-      </div>
-    </div>
-  </div>
-</section>
 
 <!-- FINAL CTA -->
 <section class="section final-cta">

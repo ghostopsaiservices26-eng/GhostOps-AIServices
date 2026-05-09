@@ -53,12 +53,7 @@ export class Home implements AfterViewInit, OnDestroy {
     { icon: '📊', title: 'Pipeline Dashboard', desc: 'Full visibility across every open role' },
   ];
 
-  stats = [
-    { num: '80%', label: 'Time Saved',    icon: '⏱️', desc: 'Eliminate repetitive tasks from your daily workflow',  target: 80,   suffix: '%' },
-    { num: '60%', label: 'Cost Reduction', icon: '💰', desc: 'Scale operations without scaling headcount',           target: 60,   suffix: '%' },
-    { num: '3×',  label: 'Faster Growth', icon: '🚀', desc: 'Achieve more in less time with AI working 24/7',        target: 3,    suffix: '×' },
-    { num: '24/7',label: 'Always On',     icon: '🔄', desc: 'AI agents and systems that never sleep',                target: null, suffix: ''  },
-  ];
+  stats: never[] = [];
 
   process = [
     { num: '01', icon: '🔍', title: 'Discover', desc: 'We audit your workflows, identify automation opportunities, and design a bespoke AI strategy tailored to your business goals.' },
@@ -67,20 +62,7 @@ export class Home implements AfterViewInit, OnDestroy {
     { num: '04', icon: '📈', title: 'Scale',    desc: 'Continuous monitoring, iteration, and expansion of your AI stack as your business grows and evolves over time.' },
   ];
 
-  testimonials = [
-    {
-      quote: 'Ghost Ops AI completely transformed our recruitment pipeline. What took our team 3 days now runs automatically in under 2 hours.',
-      name: 'Sarah Mitchell', role: 'Head of Talent', company: 'TalentBridge Group', initials: 'SM', color: 'blue',
-    },
-    {
-      quote: 'Our WhatsApp AI agent handles 80% of inbound queries without any human input. The ROI was visible within the first week.',
-      name: 'James Chen', role: 'Operations Director', company: 'ScaleFlow Digital', initials: 'JC', color: 'purple',
-    },
-    {
-      quote: 'The website Ghost Ops built converts at 3× our old one. The AI lead capture runs 24/7 and we never miss an opportunity.',
-      name: 'Priya Kapoor', role: 'Founder & CEO', company: 'Nexus Ventures', initials: 'PK', color: 'cyan',
-    },
-  ];
+  testimonials: never[] = [];
 
   ngAfterViewInit(): void {
     this.zone.runOutsideAngular(() => {
@@ -170,9 +152,9 @@ export class Home implements AfterViewInit, OnDestroy {
       scrollTrigger: {
         trigger: section,
         start: 'top top',
-        end: () => `+=${window.innerHeight * 3}`,
+        end: () => `+=${window.innerHeight * 1.2}`,
         pin: true,
-        scrub: 1.2,
+        scrub: 0.6,
         anticipatePin: 1,
       },
     });
@@ -186,8 +168,8 @@ export class Home implements AfterViewInit, OnDestroy {
     for (let i = 1; i < cards.length; i++) {
       const fromPct = `${((i - 1) / segments) * 100}%`;
       const toPct   = `${(i / segments) * 100}%`;
-      tl.fromTo(lineFill, { width: fromPct }, { width: toPct, duration: 2, ease: 'power1.inOut' });
-      tl.fromTo(cards[i], { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.8 }, '-=0.4');
+      tl.fromTo(lineFill, { width: fromPct }, { width: toPct, duration: 0.8, ease: 'power1.inOut' });
+      tl.fromTo(cards[i], { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.5 }, '-=0.2');
     }
   }
 }

@@ -59,8 +59,8 @@ export class Contact {
 
   trustBadges = [
     { icon: '🔒', text: 'Enterprise Security' },
-    { icon: '⚡', text: '48h Onboarding' },
-    { icon: '🤖', text: '50+ AI Systems Built' },
-    { icon: '⭐', text: '4.9/5 Client Rating' },
+    { icon: '⚡', text: 'Fast Onboarding' },
+    { icon: '🤖', text: 'Custom AI Systems' },
+    { icon: '🛡️', text: 'NDA Available' },
   ];
 }

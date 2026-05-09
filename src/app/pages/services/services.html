@@ -31,14 +31,12 @@
       <div class="svc-visual">
         <div class="visual-card" [class]="'vc--' + svc.accent" appTilt [tiltMax]="8" [tiltScale]="1.02">
           <div class="vc-icon">{{ svc.icon }}</div>
-          <div class="vc-label">{{ svc.visualLabel }}</div>
-          <div class="vc-bars">
-            <div class="vb-row" *ngFor="let item of svc.visualItems">
-              <span class="vb-label">{{ item.label }}</span>
-              <div class="vb-track"><div class="vb-fill" [class]="'fill--' + svc.accent" [style.width]="item.pct + '%'"></div></div>
-              <span class="vb-pct" [class]="'pct--' + svc.accent">{{ item.pct }}%</span>
-            </div>
-          </div>
+          <div class="vc-title-lg">{{ svc.title }}</div>
+          <ul class="vc-feature-list">
+            <li *ngFor="let b of svc.benefits.slice(0,4)">
+              <span class="vcf-check" [class]="'vcf--' + svc.accent">✓</span>{{ b }}
+            </li>
+          </ul>
         </div>
       </div>
     </div>

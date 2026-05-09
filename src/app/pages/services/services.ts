@@ -22,13 +22,6 @@ export class Services {
         'Scales automatically as your operations grow',
       ],
       useCases: ['CRM automation', 'Invoice processing', 'Data enrichment', 'Report generation', 'Lead scoring'],
-      visualLabel: 'Automation Performance',
-      visualItems: [
-        { label: 'Tasks Automated', pct: 94 },
-        { label: 'Error Reduction', pct: 97 },
-        { label: 'Time Saved', pct: 82 },
-        { label: 'Cost Efficiency', pct: 76 },
-      ],
     },
     {
       tag: '02 · AI Agents',
@@ -44,13 +37,6 @@ export class Services {
         'Full conversation logs and performance analytics',
       ],
       useCases: ['Customer support', 'Lead gen bots', 'Appointment booking', 'Product Q&A', 'Re-engagement flows'],
-      visualLabel: 'Agent Performance',
-      visualItems: [
-        { label: 'Response Rate', pct: 98 },
-        { label: 'Resolution Rate', pct: 84 },
-        { label: 'Lead Conversion', pct: 67 },
-        { label: 'User Satisfaction', pct: 91 },
-      ],
     },
     {
       tag: '03 · Web Development',
@@ -66,13 +52,6 @@ export class Services {
         'Full CRM, email, and automation platform integration',
       ],
       useCases: ['Landing pages', 'SaaS platforms', 'Agency websites', 'Portfolio sites', 'E-commerce'],
-      visualLabel: 'Website Performance',
-      visualItems: [
-        { label: 'Page Speed Score', pct: 96 },
-        { label: 'SEO Score', pct: 91 },
-        { label: 'Conversion Rate', pct: 78 },
-        { label: 'Accessibility', pct: 95 },
-      ],
     },
   ];
 
