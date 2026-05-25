@@ -1,0 +1,205 @@
+<!-- HERO -->
+<section class="page-hero">
+  <div class="container" appScrollAnimate>
+    <div class="badge">👥 Community Workshop</div>
+    <h1>Build Real Solutions<br><span class="gradient-text">In 10 Days</span></h1>
+    <p>Join a 10-member cohort, get assigned tasks based on your skills, and go from idea to working product — together.</p>
+    <div class="hero-ctas">
+      <a (click)="scrollTo('register')" class="btn btn-primary btn-lg" style="cursor:pointer">Apply for Next Cohort →</a>
+      <a (click)="scrollTo('schedule')" class="btn btn-ghost-white btn-lg" style="cursor:pointer">See Schedule</a>
+    </div>
+  </div>
+</section>
+
+<!-- HIGHLIGHTS -->
+<section class="section highlights-section">
+  <div class="container">
+    <div class="section-header" appScrollAnimate>
+      <div class="badge">💡 What to Expect</div>
+      <h2>10 People. 10 Days. One Real Product.</h2>
+      <p>A structured, hands-on workshop where a small team builds and pitches a real solution together.</p>
+    </div>
+    <div class="highlights-grid">
+      <div class="highlight-card" *ngFor="let h of highlights; let i = index"
+        appScrollAnimate [animDelay]="i * 80" appTilt [tiltMax]="6" [tiltScale]="1.015">
+        <div class="hc-icon">{{ h.icon }}</div>
+        <h3>{{ h.title }}</h3>
+        <p>{{ h.desc }}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REGISTER SECTION -->
+<section class="section register-section" id="register">
+  <div class="container">
+    <div class="register-grid">
+
+      <!-- LEFT: Workshop selection + form -->
+      <div class="form-col" appScrollAnimate>
+        <h2>Apply for a Workshop</h2>
+        <p class="reg-subtitle">Select an upcoming cohort and fill in your details. Only <strong>10 spots</strong> per workshop.</p>
+
+        <!-- No workshops available -->
+        <div class="no-workshops" *ngIf="activeWorkshops.length === 0">
+          <div class="nw-icon">📅</div>
+          <h3>No Upcoming Workshops</h3>
+          <p>Check back soon — new cohort dates are added regularly.</p>
+        </div>
+
+        <!-- Workshop selector -->
+        <div class="workshop-selector" *ngIf="activeWorkshops.length > 0">
+          <div class="ws-label">Select a cohort date:</div>
+          <div class="ws-cards">
+            <div class="ws-card"
+              *ngFor="let w of activeWorkshops"
+              (click)="w.spots_left > 0 && selectWorkshop(w)"
+              [class.selected]="selectedWorkshop?.id === w.id"
+              [class.full]="w.spots_left === 0">
+              <div class="ws-date">{{ formatDate(w.date) }}</div>
+              <div class="ws-name">{{ w.label }}</div>
+              <div class="ws-slots" [class]="'slots-' + getSlotColor(w)">
+                <span *ngIf="w.spots_left > 0">{{ w.spots_left }} / {{ w.spots_total }} spots left</span>
+                <span *ngIf="w.spots_left === 0">🔴 Full</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Registration Form -->
+        <div class="reg-form-wrap" *ngIf="selectedWorkshop && selectedWorkshop.spots_left > 0 && !submitted">
+          <div class="selected-banner">
+            📅 Applying for: <strong>{{ selectedWorkshop.label }} — {{ formatDate(selectedWorkshop.date) }}</strong>
+          </div>
+          <form class="reg-form" (ngSubmit)="onSubmit()" #regForm="ngForm">
+            <div class="form-group">
+              <label>Full Name *</label>
+              <input type="text" [(ngModel)]="form.name" name="name" required placeholder="Your full name" class="form-input" />
+            </div>
+            <div class="form-group">
+              <label>Email Address *</label>
+              <input type="email" [(ngModel)]="form.email" name="email" required placeholder="you@company.com" class="form-input" />
+            </div>
+            <div class="form-group">
+              <label>Your Skills / Expertise *</label>
+              <input type="text" [(ngModel)]="form.skills" name="skills" required placeholder="e.g. Frontend Dev, UI Design, Product Strategy" class="form-input" />
+            </div>
+            <div class="form-group">
+              <label>Experience Level</label>
+              <select [(ngModel)]="form.experience" name="experience" class="form-input form-select">
+                <option value="">Select your level</option>
+                <option>Beginner (0–1 years)</option>
+                <option>Intermediate (1–3 years)</option>
+                <option>Advanced (3–5 years)</option>
+                <option>Expert (5+ years)</option>
+              </select>
+            </div>
+            <div class="form-error" *ngIf="error">{{ error }}</div>
+            <button type="submit" class="btn btn-primary btn-submit" [disabled]="!regForm.valid || submitting">
+              <span *ngIf="!submitting">Apply Now →</span>
+              <span *ngIf="submitting">Submitting... ⏳</span>
+            </button>
+            <p class="form-note">🔒 Your details are private and never shared.</p>
+          </form>
+        </div>
+
+        <!-- Success State -->
+        <div class="success-card" *ngIf="submitted">
+          <div class="success-icon">🎉</div>
+          <h3>You're In!</h3>
+          <p>Your spot is confirmed for <strong>{{ selectedWorkshop?.label }}</strong>. We'll reach out with details before Day 1.</p>
+          <div class="success-steps">
+            <div class="ss-step"><span>1</span> Check your email for confirmation</div>
+            <div class="ss-step"><span>2</span> Join our community group for updates</div>
+            <div class="ss-step"><span>3</span> Show up on Day 1 ready to build!</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: Info sidebar -->
+      <div class="info-col" appScrollAnimate [animDelay]="150">
+        <div class="info-card" appTilt [tiltMax]="5" [tiltScale]="1.01">
+          <h3>🏗️ What You'll Build</h3>
+          <ul>
+            <li>A fully working product in 10 days</li>
+            <li>Real problem, real users, real impact</li>
+            <li>Team of 10 with complementary skills</li>
+            <li>Live pitch on Day 10</li>
+          </ul>
+        </div>
+        <div class="info-card" appTilt [tiltMax]="5" [tiltScale]="1.01">
+          <h3>✅ Who Should Apply</h3>
+          <ul>
+            <li>Developers (frontend, backend, AI)</li>
+            <li>Designers and UX thinkers</li>
+            <li>Product managers and strategists</li>
+            <li>Anyone motivated to build and learn</li>
+          </ul>
+        </div>
+        <div class="info-card slots-card" appTilt [tiltMax]="5" [tiltScale]="1.01">
+          <h3>⚡ Limited to 10 Members</h3>
+          <p>Small cohorts ensure everyone gets real work, real feedback, and real growth. No spectators.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TIMELINE -->
+<section class="section timeline-section" id="schedule">
+  <div class="container">
+    <div class="section-header" appScrollAnimate>
+      <div class="badge">📅 10-Day Schedule</div>
+      <h2>Day by Day Breakdown</h2>
+      <p>Every day has a clear focus — so the team always knows what to build next.</p>
+    </div>
+    <div class="days-grid">
+      <div class="day-card"
+        *ngFor="let d of days; let i = index"
+        appScrollAnimate [animDelay]="i * 60"
+        appTilt [tiltMax]="5" [tiltScale]="1.012"
+        [class.dc--blue]="d.color === 'blue'"
+        [class.dc--purple]="d.color === 'purple'"
+        [class.dc--cyan]="d.color === 'cyan'">
+        <div class="dc-top">
+          <div class="dc-day-badge">{{ d.day }}</div>
+          <div class="dc-icon">{{ d.icon }}</div>
+        </div>
+        <h3>{{ d.title }}</h3>
+        <p>{{ d.desc }}</p>
+        <ul class="dc-tasks">
+          <li *ngFor="let t of d.tasks"><span class="dc-dot"></span>{{ t }}</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="section-sm community-cta-section">
+  <div class="container">
+    <div class="cta-box" appScrollAnimate>
+      <div class="blob blob-1"></div>
+      <div class="blob blob-2"></div>
+      <svg class="cta-circuit" viewBox="0 0 800 160" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path class="cp cp-1" d="M0,80 L140,80 L140,30 L280,30 L280,80 L440,80 L440,130 L580,130 L580,80 L800,80"/>
+        <path class="cp cp-2" d="M0,130 L100,130 L100,80 L220,80 L220,30 L380,30 L380,80 L500,80 L500,130 L660,130 L660,80 L800,80"/>
+        <circle class="cd"><animateMotion dur="4.5s" repeatCount="indefinite" path="M0,80 L140,80 L140,30 L280,30 L280,80 L440,80 L440,130 L580,130 L580,80 L800,80"/></circle>
+        <circle class="cd cd-2" r="2.5"><animateMotion dur="6s" repeatCount="indefinite" begin="1.8s" path="M0,130 L100,130 L100,80 L220,80 L220,30 L380,30 L380,80 L500,80 L500,130 L660,130 L660,80 L800,80"/></circle>
+      </svg>
+      <div class="cta-content">
+        <div class="badge badge-white">🚀 Limited Spots</div>
+        <h2>Ready to Build Something Real?</h2>
+        <p>Join the next 10-day cohort. Apply above or reach out if you have questions.</p>
+        <div class="cta-actions">
+          <a (click)="scrollTo('register')" class="btn btn-white btn-lg" style="cursor:pointer">Apply Now →</a>
+        </div>
+        <div class="cta-trust">
+          <span>✓ Free to join</span>
+          <span>✓ All skill levels welcome</span>
+          <span>✓ Only 10 spots per cohort</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

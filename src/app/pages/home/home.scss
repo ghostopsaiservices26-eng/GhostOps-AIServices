@@ -1,3 +1,145 @@
+// ─── WORKSHOP BANNER ────────────────────────────────────────────────────────
+
+.workshop-banner {
+  position: fixed;
+  top: 72px; // sits just below the navbar
+  left: 0;
+  right: 0;
+  z-index: 99;
+  background: linear-gradient(90deg, #1e1b4b 0%, #312e81 40%, #1e3a8a 100%);
+  border-bottom: 1px solid rgba(99, 102, 241, 0.4);
+  box-shadow: 0 4px 24px rgba(99, 102, 241, 0.25);
+  animation: banner-slide-in 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes banner-slide-in {
+  from { transform: translateY(-100%); opacity: 0; }
+  to   { transform: translateY(0);     opacity: 1; }
+}
+
+.wb-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 10px 24px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.wb-pulse {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #4ade80;
+  flex-shrink: 0;
+  box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.6);
+  animation: pulse-ring 1.8s ease-in-out infinite;
+}
+@keyframes pulse-ring {
+  0%   { box-shadow: 0 0 0 0   rgba(74,222,128,0.6); }
+  70%  { box-shadow: 0 0 0 8px rgba(74,222,128,0);   }
+  100% { box-shadow: 0 0 0 0   rgba(74,222,128,0);   }
+}
+
+.wb-text {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+  flex-wrap: wrap;
+  font-size: 14px;
+  color: rgba(255,255,255,0.9);
+}
+
+.wb-tag {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #a5f3fc;
+  background: rgba(165,243,252,0.12);
+  padding: 3px 8px;
+  border-radius: 100px;
+  border: 1px solid rgba(165,243,252,0.25);
+}
+
+.wb-title {
+  font-weight: 700;
+  color: #fff;
+}
+
+.wb-sep {
+  color: rgba(255,255,255,0.3);
+}
+
+.wb-date {
+  color: rgba(255,255,255,0.7);
+  font-size: 13px;
+}
+
+.wb-spots {
+  font-size: 12px;
+  font-weight: 700;
+  color: #4ade80;
+  background: rgba(74,222,128,0.12);
+  padding: 2px 8px;
+  border-radius: 100px;
+  border: 1px solid rgba(74,222,128,0.25);
+
+  &.wb-spots-low {
+    color: #fbbf24;
+    background: rgba(251,191,36,0.12);
+    border-color: rgba(251,191,36,0.25);
+  }
+}
+
+.wb-cta {
+  flex-shrink: 0;
+  padding: 7px 18px;
+  background: linear-gradient(135deg, #6366f1, #3b82f6);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 700;
+  border-radius: 100px;
+  text-decoration: none;
+  transition: all 0.2s;
+  white-space: nowrap;
+  box-shadow: 0 2px 12px rgba(99,102,241,0.4);
+
+  &:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 18px rgba(99,102,241,0.6);
+  }
+}
+
+.wb-close {
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255,255,255,0.1);
+  color: rgba(255,255,255,0.6);
+  font-size: 12px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+
+  &:hover {
+    background: rgba(255,255,255,0.2);
+    color: #fff;
+  }
+}
+
+@media (max-width: 640px) {
+  .wb-inner { padding: 10px 16px; gap: 10px; }
+  .wb-sep   { display: none; }
+  .wb-date  { display: none; }
+}
+
 // ─── HERO ───────────────────────────────────────────────────────────────────
 
 // Typewriter word

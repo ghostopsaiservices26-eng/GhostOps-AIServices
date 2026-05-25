@@ -1,0 +1,167 @@
+<!-- LOGIN GATE -->
+<div class="admin-login" *ngIf="!authenticated">
+  <div class="login-card">
+    <div class="login-icon">🔐</div>
+    <h2>Admin Access</h2>
+    <p>Enter the admin password to continue.</p>
+    <form (ngSubmit)="login()" #loginForm="ngForm">
+      <input type="password" [(ngModel)]="passwordInput" name="password" placeholder="Password" class="form-input" required />
+      <div class="auth-error" *ngIf="authError">{{ authError }}</div>
+      <button type="submit" class="btn btn-primary btn-submit">Login →</button>
+    </form>
+  </div>
+</div>
+
+<!-- ADMIN DASHBOARD -->
+<div class="admin-dash" *ngIf="authenticated">
+  <div class="admin-tab-bar">
+    <button [class.active]="activeTab === 'workshops'" (click)="setTab('workshops')">
+      📅 Workshops
+    </button>
+    <button [class.active]="activeTab === 'users'" (click)="setTab('users')">
+      👥 Registered Users
+    </button>
+  </div>
+
+  <!-- ── WORKSHOPS TAB ── -->
+  <div class="admin-content" *ngIf="activeTab === 'workshops'">
+
+    <!-- Add Workshop Form -->
+    <div class="admin-card">
+      <h2>Add New Workshop</h2>
+      <div class="add-form">
+        <div class="af-row">
+          <div class="form-group">
+            <label>Workshop Label *</label>
+            <input type="text" [(ngModel)]="newWorkshop.label" placeholder="e.g. Cohort #1 — June 2026" class="form-input" />
+          </div>
+          <div class="form-group">
+            <label>Start Date *</label>
+            <input type="date" [(ngModel)]="newWorkshop.date" class="form-input" />
+          </div>
+          <div class="form-group">
+            <label>Total Spots</label>
+            <input type="number" [(ngModel)]="newWorkshop.spots_total" min="1" max="10" class="form-input" />
+          </div>
+          <div class="form-group fg-check">
+            <label class="check-label">
+              <input type="checkbox" [(ngModel)]="newWorkshop.active" />
+              <span>Active (visible to users)</span>
+            </label>
+          </div>
+        </div>
+        <div class="add-error" *ngIf="addError">{{ addError }}</div>
+        <div class="add-success" *ngIf="addSuccess">✅ {{ addSuccess }}</div>
+        <button class="btn btn-primary" (click)="addWorkshop()" [disabled]="addingWorkshop">
+          {{ addingWorkshop ? 'Adding...' : '+ Add Workshop' }}
+        </button>
+      </div>
+    </div>
+
+    <!-- Workshops List -->
+    <div class="admin-card">
+      <div class="card-header">
+        <h2>All Workshops</h2>
+        <button class="btn-refresh" (click)="loadWorkshops()">↻ Refresh</button>
+      </div>
+      <div class="loading" *ngIf="loadingWorkshops">Loading...</div>
+      <div class="empty-state" *ngIf="!loadingWorkshops && workshops.length === 0">No workshops yet. Add one above.</div>
+      <div class="workshops-table" *ngIf="!loadingWorkshops && workshops.length > 0">
+        <div class="wt-header">
+          <span>Workshop</span>
+          <span>Date</span>
+          <span>Spots</span>
+          <span>Status</span>
+          <span>Actions</span>
+        </div>
+        <div class="wt-row" *ngFor="let w of workshops">
+          <span class="wt-label">{{ w.label }}</span>
+          <span class="wt-date">{{ formatDate(w.date) }}</span>
+          <span class="wt-spots">
+            <span class="spots-num" [class.spots-low]="w.spots_left <= 2">{{ w.spots_left }}/{{ w.spots_total }}</span>
+            <div class="spots-bar"><div class="spots-fill" [style.width.%]="(w.spots_left / w.spots_total) * 100"></div></div>
+          </span>
+          <span>
+            <span class="status-badge" [class.active]="w.active" [class.inactive]="!w.active">
+              {{ w.active ? 'Active' : 'Hidden' }}
+            </span>
+          </span>
+          <span class="wt-actions">
+            <button class="btn-toggle" (click)="toggleActive(w)">{{ w.active ? 'Hide' : 'Show' }}</button>
+            <button class="btn-delete" (click)="deleteWorkshop(w)">Delete</button>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── REGISTERED USERS TAB ── -->
+  <div class="admin-content" *ngIf="activeTab === 'users'">
+    <div class="admin-card">
+      <div class="card-header">
+        <h2>Registered Users</h2>
+        <div class="reg-summary">
+          <span class="total-badge" *ngIf="!loadingRegs">{{ totalRegistrations() }} total registrations</span>
+          <button class="btn-refresh" (click)="loadUserGroups()">↻ Refresh</button>
+        </div>
+      </div>
+
+      <div class="loading" *ngIf="loadingRegs">Loading...</div>
+
+      <div class="empty-state" *ngIf="!loadingRegs && workshopGroups.length === 0">
+        No workshops found.
+      </div>
+
+      <!-- Accordion groups per workshop -->
+      <div class="accordion" *ngIf="!loadingRegs && workshopGroups.length > 0">
+        <div class="accordion-item" *ngFor="let group of workshopGroups"
+          [class.expanded]="group.expanded">
+
+          <!-- Accordion Header -->
+          <div class="accordion-header" (click)="toggleGroup(group)">
+            <div class="acc-left">
+              <span class="acc-icon">{{ group.expanded ? '▼' : '▶' }}</span>
+              <div class="acc-info">
+                <div class="acc-label">{{ group.workshop.label }}</div>
+                <div class="acc-date">{{ formatDate(group.workshop.date) }}</div>
+              </div>
+            </div>
+            <div class="acc-right">
+              <span class="acc-count" [class.acc-count-empty]="group.registrations.length === 0">
+                {{ group.registrations.length }} / {{ group.workshop.spots_total }} registered
+              </span>
+              <span class="status-badge" [class.active]="group.workshop.active" [class.inactive]="!group.workshop.active">
+                {{ group.workshop.active ? 'Active' : 'Hidden' }}
+              </span>
+            </div>
+          </div>
+
+          <!-- Accordion Body -->
+          <div class="accordion-body" *ngIf="group.expanded">
+            <div class="acc-empty" *ngIf="group.registrations.length === 0">
+              No registrations yet for this workshop.
+            </div>
+            <div class="users-table" *ngIf="group.registrations.length > 0">
+              <div class="ut-header">
+                <span>#</span>
+                <span>Name</span>
+                <span>Email</span>
+                <span>Skills</span>
+                <span>Experience</span>
+              </div>
+              <div class="ut-row" *ngFor="let r of group.registrations; let i = index">
+                <span class="ut-num">{{ i + 1 }}</span>
+                <span class="ut-name">{{ r.name }}</span>
+                <span class="ut-email">{{ r.email }}</span>
+                <span class="ut-skills">{{ r.skills }}</span>
+                <span class="ut-exp">{{ r.experience || '—' }}</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

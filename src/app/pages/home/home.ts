@@ -1,6 +1,7 @@
-import { Component, AfterViewInit, OnDestroy, ElementRef, ViewChild, NgZone } from '@angular/core';
+import { Component, AfterViewInit, OnDestroy, ElementRef, ViewChild, NgZone, ChangeDetectorRef } from '@angular/core';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
+import { FirebaseService, Workshop } from '../../services/firebase.service';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -17,7 +18,12 @@ export class Home implements AfterViewInit, OnDestroy {
   private heroWords = ['Scale.', 'Grow.', 'Lead.', 'Win.', 'Dominate.'];
   private typewriterTimer: ReturnType<typeof setInterval> | null = null;
 
-  constructor(private zone: NgZone) {}
+  // Workshop banner
+  activeWorkshop: Workshop | null = null;
+  bannerDismissed = false;
+  private unsubWorkshops?: () => void;
+
+  constructor(private zone: NgZone, private cdr: ChangeDetectorRef, private fb: FirebaseService) {}
 
   services = [
     {
@@ -65,6 +71,15 @@ export class Home implements AfterViewInit, OnDestroy {
   testimonials: never[] = [];
 
   ngAfterViewInit(): void {
+    // Listen for active workshops and show banner
+    this.unsubWorkshops = this.fb.listenWorkshops(workshops => {
+      const active = workshops.filter(w => w.active);
+      this.zone.run(() => {
+        this.activeWorkshop = active.length > 0 ? active[0] : null;
+        this.cdr.detectChanges();
+      });
+    });
+
     this.zone.runOutsideAngular(() => {
       setTimeout(() => {
         this.initTypewriter();
@@ -76,6 +91,14 @@ export class Home implements AfterViewInit, OnDestroy {
 
   ngOnDestroy(): void {
     if (this.typewriterTimer) clearInterval(this.typewriterTimer);
+    this.unsubWorkshops?.();
+  }
+
+  dismissBanner() { this.bannerDismissed = true; }
+
+  formatDate(dateStr: string): string {
+    const d = new Date(dateStr);
+    return d.toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' });
   }
 
   // ── Typewriter ─────────────────────────────────────────────────────────────

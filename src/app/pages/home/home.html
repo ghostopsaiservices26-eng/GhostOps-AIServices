@@ -1,3 +1,22 @@
+<!-- WORKSHOP BANNER -->
+<div class="workshop-banner" *ngIf="activeWorkshop && !bannerDismissed">
+  <div class="wb-inner">
+    <div class="wb-pulse"></div>
+    <div class="wb-text">
+      <span class="wb-tag">🚀 Now Open</span>
+      <span class="wb-title">{{ activeWorkshop.label }}</span>
+      <span class="wb-sep">·</span>
+      <span class="wb-date">{{ formatDate(activeWorkshop.date) }}</span>
+      <span class="wb-sep">·</span>
+      <span class="wb-spots" [class.wb-spots-low]="activeWorkshop.spots_left <= 3">
+        {{ activeWorkshop.spots_left }} spot{{ activeWorkshop.spots_left === 1 ? '' : 's' }} left
+      </span>
+    </div>
+    <a routerLink="/community" class="wb-cta">Register Now →</a>
+    <button class="wb-close" (click)="dismissBanner()" aria-label="Dismiss">✕</button>
+  </div>
+</div>
+
 <!-- HERO -->
 <section class="hero">
   <!-- Decorative background orbs -->

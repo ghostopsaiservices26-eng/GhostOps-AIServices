@@ -11,6 +11,8 @@ import { Home } from './pages/home/home';
 import { Services } from './pages/services/services';
 import { HowItWorks } from './pages/how-it-works/how-it-works';
 import { Contact } from './pages/contact/contact';
+import { Community } from './pages/community/community';
+import { Admin } from './pages/admin/admin';
 import { WebglShader } from './components/webgl-shader/webgl-shader';
 import { ThreeBackground } from './components/three-background/three-background';
 import { MountainScene } from './components/mountain-scene/mountain-scene';
@@ -27,6 +29,8 @@ import { Tilt } from './directives/tilt.directive';
     Services,
     HowItWorks,
     Contact,
+    Community,
+    Admin,
     WebglShader,
     ThreeBackground,
     MountainScene,
