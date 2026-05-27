@@ -39,10 +39,6 @@
             <label>Start Date *</label>
             <input type="date" [(ngModel)]="newWorkshop.date" class="form-input" />
           </div>
-          <div class="form-group">
-            <label>Total Spots</label>
-            <input type="number" [(ngModel)]="newWorkshop.spots_total" min="1" max="10" class="form-input" />
-          </div>
           <div class="form-group fg-check">
             <label class="check-label">
               <input type="checkbox" [(ngModel)]="newWorkshop.active" />
@@ -70,17 +66,12 @@
         <div class="wt-header">
           <span>Workshop</span>
           <span>Date</span>
-          <span>Spots</span>
           <span>Status</span>
           <span>Actions</span>
         </div>
         <div class="wt-row" *ngFor="let w of workshops">
           <span class="wt-label">{{ w.label }}</span>
           <span class="wt-date">{{ formatDate(w.date) }}</span>
-          <span class="wt-spots">
-            <span class="spots-num" [class.spots-low]="w.spots_left <= 2">{{ w.spots_left }}/{{ w.spots_total }}</span>
-            <div class="spots-bar"><div class="spots-fill" [style.width.%]="(w.spots_left / w.spots_total) * 100"></div></div>
-          </span>
           <span>
             <span class="status-badge" [class.active]="w.active" [class.inactive]="!w.active">
               {{ w.active ? 'Active' : 'Hidden' }}
@@ -128,7 +119,7 @@
             </div>
             <div class="acc-right">
               <span class="acc-count" [class.acc-count-empty]="group.registrations.length === 0">
-                {{ group.registrations.length }} / {{ group.workshop.spots_total }} registered
+                {{ group.registrations.length }} registered
               </span>
               <span class="status-badge" [class.active]="group.workshop.active" [class.inactive]="!group.workshop.active">
                 {{ group.workshop.active ? 'Active' : 'Hidden' }}
@@ -147,7 +138,8 @@
                 <span>Name</span>
                 <span>Email</span>
                 <span>Skills</span>
-                <span>Experience</span>
+                <span>Exp.</span>
+                <span>Claude Audit</span>
               </div>
               <div class="ut-row" *ngFor="let r of group.registrations; let i = index">
                 <span class="ut-num">{{ i + 1 }}</span>
@@ -155,6 +147,12 @@
                 <span class="ut-email">{{ r.email }}</span>
                 <span class="ut-skills">{{ r.skills }}</span>
                 <span class="ut-exp">{{ r.experience || '—' }}</span>
+                <span class="ut-claude">
+                  <span *ngIf="!r.claude_response" class="ut-no-response">—</span>
+                  <span *ngIf="r.claude_response" class="ut-has-response" [title]="r.claude_response">
+                    ✅ View
+                  </span>
+                </span>
               </div>
             </div>
           </div>

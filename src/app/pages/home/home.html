@@ -7,10 +7,6 @@
       <span class="wb-title">{{ activeWorkshop.label }}</span>
       <span class="wb-sep">·</span>
       <span class="wb-date">{{ formatDate(activeWorkshop.date) }}</span>
-      <span class="wb-sep">·</span>
-      <span class="wb-spots" [class.wb-spots-low]="activeWorkshop.spots_left <= 3">
-        {{ activeWorkshop.spots_left }} spot{{ activeWorkshop.spots_left === 1 ? '' : 's' }} left
-      </span>
     </div>
     <a routerLink="/community" class="wb-cta">Register Now →</a>
     <button class="wb-close" (click)="dismissBanner()" aria-label="Dismiss">✕</button>

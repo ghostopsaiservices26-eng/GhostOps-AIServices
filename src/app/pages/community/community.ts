@@ -13,10 +13,32 @@ export class Community implements OnInit, OnDestroy {
   selectedWorkshop: Workshop | null = null;
   private unsubscribe?: () => void;
 
-  form = { name: '', email: '', skills: '', experience: '' };
+  form = { name: '', email: '', skills: '', experience: '', claudeResponse: '' };
+  formStep: 1 | 2 = 1;
   submitting = false;
   submitted = false;
   error = '';
+  promptCopied = false;
+
+  readonly claudePrompt = `I am applying to Ghost Ops — a 10-day live AI build lab. Look through our full conversation history together and generate the following output based only on what you can actually see. No assumptions. No flattery. If you have no history with me, say so and stop.
+
+1. SCORES (out of 10)
+Rate each category based strictly on evidence from our past conversations. If there is no evidence for a category, score it 0 and write NO EVIDENCE.
+
+Claude Usage:          X/10  (how actively and deeply have I used you as a tool?)
+Quality of Thinking:   X/10  (do my prompts reflect structured, original thinking?)
+Ideas & Creativity:    X/10  (are the things I built genuinely novel or just copies?)
+Iteration & Debugging: X/10  (do I show a pattern of trying, failing, and fixing?)
+Prompting Skill:       X/10  (are my prompts well-structured, specific, goal-oriented?)
+Overall:               X/10
+
+2. KEY WORK SUMMARY
+List the 3–5 most significant things I have worked on with you. Focus on real building, not just learning or discussing. One line each. If nothing qualifies, write: NO SHIPPED WORK IN HISTORY.
+
+3. CLAUDE SUBSCRIPTION START
+State the earliest date or time period visible in our conversation history. If you cannot determine this, write: NOT VISIBLE IN HISTORY.
+
+Do not add encouragement, closing remarks, or commentary outside these three sections. Stop after section 3.`;
 
   constructor(private fb: FirebaseService) {}
 
@@ -36,11 +58,34 @@ export class Community implements OnInit, OnDestroy {
     this.selectedWorkshop = w;
     this.submitted = false;
     this.error = '';
-    this.form = { name: '', email: '', skills: '', experience: '' };
+    this.formStep = 1;
+    this.form = { name: '', email: '', skills: '', experience: '', claudeResponse: '' };
+  }
+
+  goToStep2() {
+    if (!this.form.name.trim() || !this.form.email.trim() || !this.form.skills.trim()) return;
+    this.formStep = 2;
+    setTimeout(() => document.getElementById('claude-step')?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 50);
+  }
+
+  goToStep1() { this.formStep = 1; }
+
+  async copyPrompt() {
+    try {
+      await navigator.clipboard.writeText(this.claudePrompt);
+      this.promptCopied = true;
+      setTimeout(() => { this.promptCopied = false; }, 2500);
+    } catch (e) {
+      console.error('Clipboard copy failed', e);
+    }
   }
 
   async onSubmit() {
     if (!this.selectedWorkshop?.id) return;
+    if (!this.form.claudeResponse.trim()) {
+      this.error = 'Please paste your Claude response before submitting.';
+      return;
+    }
     this.submitting = true;
     this.error = '';
     const result = await this.fb.register({
@@ -50,6 +95,7 @@ export class Community implements OnInit, OnDestroy {
       email: this.form.email,
       skills: this.form.skills,
       experience: this.form.experience,
+      claude_response: this.form.claudeResponse.trim(),
     });
     this.submitting = false;
     if (result.success) { this.submitted = true; }
@@ -63,13 +109,6 @@ export class Community implements OnInit, OnDestroy {
   formatDate(dateStr: string): string {
     const d = new Date(dateStr);
     return d.toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' });
-  }
-
-  getSlotColor(w: Workshop): string {
-    const pct = w.spots_left / w.spots_total;
-    if (pct > 0.5) return 'green';
-    if (pct > 0.2) return 'amber';
-    return 'red';
   }
 
   days = [
@@ -106,7 +145,7 @@ export class Community implements OnInit, OnDestroy {
   ];
 
   highlights = [
-    { icon: '👥', title: '10 Members Only',    desc: 'Each cohort is strictly limited to 10 members for focused collaboration and personal attention.' },
+    { icon: '👥', title: 'Open to All',         desc: 'Anyone passionate about building with AI can apply — no experience cap, no seat limit.' },
     { icon: '🎯', title: '1 Problem Statement', desc: 'Every workshop focuses on solving one real, meaningful problem from start to finish.' },
     { icon: '🤝', title: 'Skill-Based Roles',   desc: 'Tasks assigned based on your skills — developers, designers, strategists all contribute.' },
     { icon: '🏆', title: 'Pitch to Win',        desc: 'Day 10 is a live pitch — present your build and compete for recognition.' },

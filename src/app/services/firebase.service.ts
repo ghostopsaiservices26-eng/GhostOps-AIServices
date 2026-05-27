@@ -24,6 +24,7 @@ export interface Registration {
   email: string;
   skills: string;
   experience: string;
+  claude_response?: string;
   created_at?: string;
 }
 
@@ -77,6 +78,8 @@ export class FirebaseService {
   }
 
   async deleteWorkshop(id: string): Promise<void> {
+    // Delete registrations first (DB cascade handles this too, but belt-and-suspenders)
+    await this.sb.from('registrations').delete().eq('workshop_id', id);
     const { error } = await this.sb.from('workshops').delete().eq('id', id);
     if (error) throw error;
   }
@@ -96,28 +99,9 @@ export class FirebaseService {
       return { success: false, message: 'You have already registered for this workshop.' };
     }
 
-    // Check spots left
-    const { data: workshop } = await this.sb
-      .from('workshops')
-      .select('spots_left')
-      .eq('id', reg.workshop_id)
-      .single();
-
-    if (!workshop || workshop.spots_left <= 0) {
-      return { success: false, message: 'Sorry, this workshop is now full.' };
-    }
-
     // Insert registration
     const { error: regError } = await this.sb.from('registrations').insert(reg);
     if (regError) return { success: false, message: 'Registration failed. Please try again.' };
-
-    // Decrement spots_left
-    const { error: updateError } = await this.sb
-      .from('workshops')
-      .update({ spots_left: workshop.spots_left - 1 })
-      .eq('id', reg.workshop_id);
-
-    if (updateError) return { success: false, message: 'Registered but slot count failed to update.' };
 
     return { success: true, message: 'Registered successfully!' };
   }
