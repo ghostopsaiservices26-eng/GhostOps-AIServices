@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-services',
@@ -7,6 +8,10 @@ import { Component } from '@angular/core';
   styleUrl: './services.scss',
 })
 export class Services {
+  constructor(private titleSvc: Title) {
+    this.titleSvc.setTitle('Services — GhostOps AI Automation');
+  }
+
   services = [
     {
       tag: '01 · AI Services',

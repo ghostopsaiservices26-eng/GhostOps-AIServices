@@ -1,4 +1,5 @@
 import { Component, AfterViewInit, OnDestroy, ElementRef, ViewChild, NgZone, ChangeDetectorRef } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
 import { FirebaseService, Workshop } from '../../services/firebase.service';
@@ -23,7 +24,9 @@ export class Home implements AfterViewInit, OnDestroy {
   bannerDismissed = false;
   private unsubWorkshops?: () => void;
 
-  constructor(private zone: NgZone, private cdr: ChangeDetectorRef, private fb: FirebaseService) {}
+  constructor(private zone: NgZone, private cdr: ChangeDetectorRef, private fb: FirebaseService, private titleSvc: Title) {
+    this.titleSvc.setTitle('GhostOps — AI Automation Agency');
+  }
 
   services = [
     {

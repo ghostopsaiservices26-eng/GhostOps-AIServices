@@ -1,4 +1,5 @@
 import { Component, AfterViewInit, ElementRef, ViewChild, NgZone } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
 
@@ -14,7 +15,9 @@ export class HowItWorks implements AfterViewInit {
   @ViewChild('obSection')  obSectionRef!: ElementRef<HTMLElement>;
   @ViewChild('obLineFill') obLineFillRef!: ElementRef<HTMLElement>;
 
-  constructor(private zone: NgZone) {}
+  constructor(private zone: NgZone, private titleSvc: Title) {
+    this.titleSvc.setTitle('How It Works — GhostOps');
+  }
 
   steps = [
     {

@@ -1,4 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { FirebaseService, Workshop } from '../../services/firebase.service';
 
 @Component({
@@ -40,7 +41,9 @@ State the earliest date or time period visible in our conversation history. If y
 
 Do not add encouragement, closing remarks, or commentary outside these three sections. Stop after section 3.`;
 
-  constructor(private fb: FirebaseService) {}
+  constructor(private fb: FirebaseService, private titleSvc: Title) {
+    this.titleSvc.setTitle('Community — GhostOps 10-Day Build Lab');
+  }
 
   ngOnInit() {
     this.unsubscribe = this.fb.listenWorkshops(workshops => {

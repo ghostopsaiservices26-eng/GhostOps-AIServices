@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import emailjs from '@emailjs/browser';
 
 const EMAILJS_SERVICE_ID  = 'service_8muw215';
@@ -12,6 +13,10 @@ const EMAILJS_PUBLIC_KEY  = 'xAuZ81mMRR07yf3UX';
   styleUrl: './contact.scss',
 })
 export class Contact {
+  constructor(private titleSvc: Title) {
+    this.titleSvc.setTitle('Contact Us — GhostOps');
+  }
+
   form = { name: '', email: '', company: '', phone: '', size: '', challenge: '' };
   submitted = false;
   loading = false;

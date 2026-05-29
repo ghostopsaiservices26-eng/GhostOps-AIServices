@@ -1,4 +1,5 @@
 import { Component, OnInit, OnDestroy, NgZone } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { from, Subscription } from 'rxjs';
 import { FirebaseService, Workshop, Registration } from '../../services/firebase.service';
 
@@ -36,7 +37,9 @@ export class Admin implements OnInit, OnDestroy {
 
   private subs = new Subscription();
 
-  constructor(private fb: FirebaseService, private zone: NgZone) {}
+  constructor(private fb: FirebaseService, private zone: NgZone, private titleSvc: Title) {
+    this.titleSvc.setTitle('Admin — GhostOps');
+  }
 
   ngOnInit() {}
   ngOnDestroy() { this.subs.unsubscribe(); }
