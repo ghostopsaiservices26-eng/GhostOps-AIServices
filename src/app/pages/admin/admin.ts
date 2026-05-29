@@ -146,6 +146,11 @@ export class Admin implements OnInit, OnDestroy {
 
   toggleGroup(group: WorkshopGroup) { group.expanded = !group.expanded; }
 
+  // Response modal
+  modalResponse: string | null = null;
+  openResponse(text: string) { this.modalResponse = text; }
+  closeResponse() { this.modalResponse = null; }
+
   totalRegistrations(): number {
     return this.workshopGroups.reduce((sum, g) => sum + g.registrations.length, 0);
   }

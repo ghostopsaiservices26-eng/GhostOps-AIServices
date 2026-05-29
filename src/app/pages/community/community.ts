@@ -25,7 +25,7 @@ export class Community implements OnInit, OnDestroy {
 1. SCORES (out of 10)
 Rate each category based strictly on evidence from our past conversations. If there is no evidence for a category, score it 0 and write NO EVIDENCE.
 
-Claude Usage:          X/10  (how actively and deeply have I used you as a tool?)
+AI Tool Usage:         X/10  (how actively and deeply have I used you as a tool?)
 Quality of Thinking:   X/10  (do my prompts reflect structured, original thinking?)
 Ideas & Creativity:    X/10  (are the things I built genuinely novel or just copies?)
 Iteration & Debugging: X/10  (do I show a pattern of trying, failing, and fixing?)
@@ -35,7 +35,7 @@ Overall:               X/10
 2. KEY WORK SUMMARY
 List the 3–5 most significant things I have worked on with you. Focus on real building, not just learning or discussing. One line each. If nothing qualifies, write: NO SHIPPED WORK IN HISTORY.
 
-3. CLAUDE SUBSCRIPTION START
+3. AI TOOL SUBSCRIPTION START
 State the earliest date or time period visible in our conversation history. If you cannot determine this, write: NOT VISIBLE IN HISTORY.
 
 Do not add encouragement, closing remarks, or commentary outside these three sections. Stop after section 3.`;
@@ -83,7 +83,7 @@ Do not add encouragement, closing remarks, or commentary outside these three sec
   async onSubmit() {
     if (!this.selectedWorkshop?.id) return;
     if (!this.form.claudeResponse.trim()) {
-      this.error = 'Please paste your Claude response before submitting.';
+      this.error = 'Please paste your AI response before submitting.';
       return;
     }
     this.submitting = true;

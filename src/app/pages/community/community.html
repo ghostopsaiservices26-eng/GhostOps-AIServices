@@ -76,7 +76,7 @@
             <div class="step-line" [class.filled]="formStep === 2"></div>
             <div class="step-item" [class.active]="formStep === 2">
               <div class="step-dot">2</div>
-              <span>Claude Audit</span>
+              <span>AI Assessment</span>
             </div>
           </div>
 
@@ -107,7 +107,7 @@
             <button type="button" class="btn btn-primary btn-submit"
               [disabled]="!form.name.trim() || !form.email.trim() || !form.skills.trim()"
               (click)="goToStep2()">
-              Next — Claude Audit →
+              Next — AI Assessment →
             </button>
             <p class="form-note">🔒 Your details are private and never shared.</p>
           </div>
@@ -117,8 +117,8 @@
             <div class="claude-step-intro">
               <div class="csi-icon">🤖</div>
               <div>
-                <h4>Claude Audit Required</h4>
-                <p>Copy the prompt below, paste it into <a href="https://claude.ai" target="_blank">claude.ai</a>, then paste Claude's full response here. We use this to assess if you're ready to ship.</p>
+                <h4>AI Assessment Required</h4>
+                <p>Copy the prompt below, paste it into your AI tool, then paste the full response here. We use this to assess if you're ready to ship.</p>
               </div>
             </div>
 
@@ -136,7 +136,7 @@
 
             <!-- Response Textarea -->
             <div class="form-group" style="margin-top: 20px;">
-              <label>Paste Claude's Response Here *</label>
+              <label>Paste AI Response Here *</label>
               <textarea
                 [(ngModel)]="form.claudeResponse"
                 name="claudeResponse"
@@ -158,7 +158,7 @@
                 <span *ngIf="submitting">Submitting… ⏳</span>
               </button>
             </div>
-            <p class="form-note">🔒 Your Claude response is only seen by the Ghost Ops team.</p>
+            <p class="form-note">🔒 Your response is only seen by the Ghost Ops team.</p>
           </div>
         </div>
 

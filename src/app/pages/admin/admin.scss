@@ -428,15 +428,153 @@
 .loading { padding: 24px; text-align: center; color: #64748b; font-size: 14px; }
 .empty-state { padding: 32px; text-align: center; color: #94a3b8; font-size: 15px; }
 
+// ── AI Response Modal ─────────────────────────────────────────────────────────
+.response-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.6);
+  backdrop-filter: blur(4px);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  animation: overlay-in 0.2s ease forwards;
+}
+
+@keyframes overlay-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.response-modal {
+  background: #fff;
+  border-radius: 20px;
+  width: 100%;
+  max-width: 680px;
+  max-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 24px 64px rgba(0,0,0,0.2);
+  animation: modal-in 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  overflow: hidden;
+}
+
+@keyframes modal-in {
+  from { opacity: 0; transform: translateY(16px) scale(0.97); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.rm-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 24px;
+  border-bottom: 1px solid #f1f5f9;
+  flex-shrink: 0;
+
+  h3 { font-size: 16px; font-weight: 700; color: #0f172a; margin: 0; }
+}
+
+.rm-close {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: none;
+  background: #f1f5f9;
+  color: #64748b;
+  font-size: 13px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+  &:hover { background: #e2e8f0; color: #0f172a; }
+}
+
+.rm-body {
+  overflow-y: auto;
+  padding: 20px 24px;
+  flex: 1;
+
+  &::-webkit-scrollbar { width: 4px; }
+  &::-webkit-scrollbar-track { background: transparent; }
+  &::-webkit-scrollbar-thumb { background: #e2e8f0; border-radius: 2px; }
+}
+
+.rm-text {
+  font-family: inherit;
+  font-size: 14px;
+  line-height: 1.7;
+  color: #334155;
+  white-space: pre-wrap;
+  word-break: break-word;
+  margin: 0;
+}
+
 .btn-submit { width: 100%; padding: 14px; margin-top: 8px; }
 
+// ─── MOBILE ─────────────────────────────────────────────────────────────────
 @media (max-width: 768px) {
-  .admin-header { padding: 16px 20px; }
-  .admin-content { padding: 0 16px; }
-  .af-row { grid-template-columns: 1fr; }
-  .wt-header, .wt-row { grid-template-columns: 1fr 1fr; }
-  .wt-header span:nth-child(n+3), .wt-row span:nth-child(n+3) { display: none; }
-  .wt-actions { flex-direction: column; }
-  .rt-header, .rt-row { grid-template-columns: 1fr 1fr; }
-  .rt-header span:nth-child(n+3), .rt-row span:nth-child(n+3) { display: none; }
+
+  // Login
+  .admin-login { padding: 90px 16px 24px; }
+  .login-card { padding: 28px 20px; border-radius: 16px; }
+
+  // Dashboard
+  .admin-dash { padding-top: 64px; padding-bottom: 40px; }
+
+  // Tab bar — full width equal buttons
+  .admin-tab-bar {
+    margin: 12px 12px 0;
+    padding: 0;
+    button {
+      flex: 1;
+      padding: 10px 8px;
+      font-size: 12px;
+      text-align: center;
+    }
+  }
+
+  // Content
+  .admin-content { padding: 0 12px; margin: 16px auto; gap: 16px; }
+
+  // Card
+  .admin-card { padding: 20px 16px; border-radius: 12px; }
+
+  // Card header — stack on small screens
+  .card-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    h2 { font-size: 16px; }
+  }
+
+  // Reg summary — wrap
+  .reg-summary { flex-wrap: wrap; gap: 8px; }
+  .total-badge { font-size: 12px; }
+
+  // Add form
+  .af-row { grid-template-columns: 1fr; gap: 12px; }
+  .fg-check { justify-content: flex-start; padding-bottom: 0; }
+
+  // Accordion header wraps on small screens
+  .accordion-header { padding: 12px 14px; gap: 8px; }
+  .acc-info .acc-label { font-size: 13px; }
+  .acc-count { font-size: 12px; padding: 3px 10px; }
+  .accordion-body { padding: 12px 10px; }
+}
+
+// ── Horizontal scroll wrapper for tables ─────────────────────────────────────
+.workshops-table,
+.users-table {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+
+  // min-width keeps columns from collapsing
+  .wt-header,
+  .wt-row { min-width: 480px; }
+
+  .ut-header,
+  .ut-row { min-width: 620px; }
 }
