@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, NgZone } from '@angular/core';
+import { Component, OnInit, OnDestroy, NgZone, ViewChild, ElementRef } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { from, Subscription } from 'rxjs';
 import { FirebaseService, Workshop, Registration } from '../../services/firebase.service';
@@ -149,10 +149,60 @@ export class Admin implements OnInit, OnDestroy {
 
   toggleGroup(group: WorkshopGroup) { group.expanded = !group.expanded; }
 
-  // Response modal
+  // Response modal — uses native <dialog> top-layer
+  @ViewChild('responseDialog') responseDialog!: ElementRef<HTMLDialogElement>;
+  @ViewChild('rmBody') rmBody!: ElementRef<HTMLDivElement>;
   modalResponse: string | null = null;
-  openResponse(text: string) { this.modalResponse = text; }
-  closeResponse() { this.modalResponse = null; }
+  private scrollY = 0;
+
+  openResponse(text: string) {
+    this.modalResponse = text;
+    // Lock page scroll by fixing the body in place
+    this.scrollY = window.scrollY;
+    document.body.style.position = 'fixed';
+    document.body.style.top = `-${this.scrollY}px`;
+    document.body.style.left = '0';
+    document.body.style.right = '0';
+    document.body.style.width = '100%';
+
+    setTimeout(() => {
+      const dlg = this.responseDialog?.nativeElement;
+      if (dlg && !dlg.open) dlg.showModal();
+    });
+  }
+
+  closeResponse() {
+    const dlg = this.responseDialog?.nativeElement;
+    if (dlg?.open) dlg.close();
+    this.modalResponse = null;
+    // Restore page scroll
+    document.body.style.position = '';
+    document.body.style.top = '';
+    document.body.style.left = '';
+    document.body.style.right = '';
+    document.body.style.width = '';
+    window.scrollTo(0, this.scrollY);
+  }
+
+  onBodyWheel(e: WheelEvent) {
+    // Manually scroll the modal body — overrides any browser quirk
+    // that prevents wheel events from reaching it
+    const el = this.rmBody?.nativeElement;
+    if (!el) return;
+    el.scrollTop += e.deltaY;
+    e.preventDefault();
+    e.stopPropagation();
+  }
+
+  onDialogClick(e: MouseEvent) {
+    // Click on backdrop (the <dialog> itself) closes it
+    if (e.target === this.responseDialog?.nativeElement) this.closeResponse();
+  }
+
+  onDialogClose() {
+    // Triggered by Escape key — clean up if dialog closed itself
+    if (this.modalResponse !== null) this.closeResponse();
+  }
 
   totalRegistrations(): number {
     return this.workshopGroups.reduce((sum, g) => sum + g.registrations.length, 0);

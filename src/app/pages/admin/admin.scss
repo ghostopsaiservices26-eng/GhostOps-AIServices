@@ -428,36 +428,41 @@
 .loading { padding: 24px; text-align: center; color: #64748b; font-size: 14px; }
 .empty-state { padding: 32px; text-align: center; color: #94a3b8; font-size: 15px; }
 
-// ── AI Response Modal ─────────────────────────────────────────────────────────
-.response-modal-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(15, 23, 42, 0.6);
-  backdrop-filter: blur(4px);
-  z-index: 1000;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-  animation: overlay-in 0.2s ease forwards;
-}
+// ── AI Response Modal (native <dialog>) ──────────────────────────────────────
+.response-dialog {
+  // Reset native <dialog> default styles
+  padding: 0;
+  border: none;
+  background: transparent;
+  margin: auto;            // center via dialog defaults
+  max-width: 680px;
+  width: calc(100vw - 40px);
+  max-height: 80vh;
+  height: 80vh;
+  overflow: hidden;
 
-@keyframes overlay-in {
-  from { opacity: 0; }
-  to   { opacity: 1; }
+  &:not([open]) { display: none; }
+
+  &[open] {
+    display: block;
+  }
+
+  &::backdrop {
+    background: rgba(15, 23, 42, 0.6);
+    backdrop-filter: blur(4px);
+  }
 }
 
 .response-modal {
   background: #fff;
   border-radius: 20px;
   width: 100%;
-  max-width: 680px;
-  max-height: 80vh;
+  height: 100%;             // fill the dialog (which is 80vh)
   display: flex;
   flex-direction: column;
+  overflow: hidden;
   box-shadow: 0 24px 64px rgba(0,0,0,0.2);
   animation: modal-in 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-  overflow: hidden;
 }
 
 @keyframes modal-in {
@@ -493,23 +498,25 @@
 }
 
 .rm-body {
+  flex: 1 1 0;
+  min-height: 0;
   overflow-y: auto;
+  overscroll-behavior: contain;
   padding: 20px 24px;
-  flex: 1;
+  -webkit-overflow-scrolling: touch;
 
-  &::-webkit-scrollbar { width: 4px; }
+  &::-webkit-scrollbar { width: 6px; }
   &::-webkit-scrollbar-track { background: transparent; }
-  &::-webkit-scrollbar-thumb { background: #e2e8f0; border-radius: 2px; }
+  &::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 3px; }
+  &::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
 }
 
 .rm-text {
-  font-family: inherit;
   font-size: 14px;
   line-height: 1.7;
   color: #334155;
   white-space: pre-wrap;
   word-break: break-word;
-  margin: 0;
 }
 
 .btn-submit { width: 100%; padding: 14px; margin-top: 8px; }

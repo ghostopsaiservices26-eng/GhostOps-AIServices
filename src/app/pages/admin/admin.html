@@ -164,15 +164,15 @@
 
 </div>
 
-<!-- AI Response Modal -->
-<div class="response-modal-overlay" *ngIf="modalResponse" (click)="closeResponse()">
+<!-- AI Response Modal (native <dialog> — renders in top-layer) -->
+<dialog #responseDialog class="response-dialog" (click)="onDialogClick($event)" (close)="onDialogClose()">
   <div class="response-modal" (click)="$event.stopPropagation()">
     <div class="rm-header">
       <h3>🤖 AI Assessment Response</h3>
-      <button class="rm-close" (click)="closeResponse()">✕</button>
+      <button class="rm-close" (click)="closeResponse()" type="button">✕</button>
     </div>
-    <div class="rm-body">
-      <pre class="rm-text">{{ modalResponse }}</pre>
+    <div #rmBody class="rm-body" (wheel)="onBodyWheel($event)">
+      <div class="rm-text">{{ modalResponse }}</div>
     </div>
   </div>
-</div>
+</dialog>
