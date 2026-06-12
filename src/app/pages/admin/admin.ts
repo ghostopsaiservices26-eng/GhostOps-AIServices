@@ -152,19 +152,18 @@ export class Admin implements OnInit, OnDestroy {
   // Response modal — uses native <dialog> top-layer
   @ViewChild('responseDialog') responseDialog!: ElementRef<HTMLDialogElement>;
   @ViewChild('rmBody') rmBody!: ElementRef<HTMLDivElement>;
+  @ViewChild('editDialog') editDialog!: ElementRef<HTMLDialogElement>;
   modalResponse: string | null = null;
   private scrollY = 0;
 
+  // Edit workshop modal state
+  editForm: { id: string; label: string; date: string; active: boolean } | null = null;
+  editError = '';
+  savingEdit = false;
+
   openResponse(text: string) {
     this.modalResponse = text;
-    // Lock page scroll by fixing the body in place
-    this.scrollY = window.scrollY;
-    document.body.style.position = 'fixed';
-    document.body.style.top = `-${this.scrollY}px`;
-    document.body.style.left = '0';
-    document.body.style.right = '0';
-    document.body.style.width = '100%';
-
+    this.lockBodyScroll();
     setTimeout(() => {
       const dlg = this.responseDialog?.nativeElement;
       if (dlg && !dlg.open) dlg.showModal();
@@ -175,7 +174,75 @@ export class Admin implements OnInit, OnDestroy {
     const dlg = this.responseDialog?.nativeElement;
     if (dlg?.open) dlg.close();
     this.modalResponse = null;
-    // Restore page scroll
+    this.unlockBodyScroll();
+  }
+
+  // ── Edit workshop ───────────────────────────────────────────────
+  openEdit(w: Workshop) {
+    this.editForm = {
+      id: w.id!,
+      label: w.label,
+      date: w.date,
+      active: w.active,
+    };
+    this.editError = '';
+    this.lockBodyScroll();
+    setTimeout(() => {
+      const dlg = this.editDialog?.nativeElement;
+      if (dlg && !dlg.open) dlg.showModal();
+    });
+  }
+
+  closeEdit() {
+    const dlg = this.editDialog?.nativeElement;
+    if (dlg?.open) dlg.close();
+    this.editForm = null;
+    this.editError = '';
+    this.unlockBodyScroll();
+  }
+
+  saveEdit() {
+    if (!this.editForm) return;
+    if (!this.editForm.label || !this.editForm.date) {
+      this.editError = 'Label and date are required.';
+      return;
+    }
+    this.savingEdit = true;
+    this.editError = '';
+    const { id, label, date, active } = this.editForm;
+    const sub = from(this.fb.updateWorkshop(id, { label, date, active })).subscribe({
+      next: () => this.zone.run(() => {
+        this.savingEdit = false;
+        this.closeEdit();
+        this.loadWorkshops();
+      }),
+      error: (e: any) => this.zone.run(() => {
+        this.savingEdit = false;
+        this.editError = e?.message || 'Failed to save changes.';
+      }),
+    });
+    this.subs.add(sub);
+  }
+
+  onEditDialogClick(e: MouseEvent) {
+    if (e.target === this.editDialog?.nativeElement) this.closeEdit();
+  }
+
+  onEditDialogClose() {
+    if (this.editForm !== null) this.closeEdit();
+  }
+
+  // ── Body scroll lock helpers (shared by both modals) ────────────
+  private lockBodyScroll() {
+    this.scrollY = window.scrollY;
+    document.body.style.position = 'fixed';
+    document.body.style.top = `-${this.scrollY}px`;
+    document.body.style.left = '0';
+    document.body.style.right = '0';
+    document.body.style.width = '100%';
+  }
+
+  private unlockBodyScroll() {
     document.body.style.position = '';
     document.body.style.top = '';
     document.body.style.left = '';

@@ -78,6 +78,7 @@
             </span>
           </span>
           <span class="wt-actions">
+            <button class="btn-edit" (click)="openEdit(w)">Edit</button>
             <button class="btn-toggle" (click)="toggleActive(w)">{{ w.active ? 'Hide' : 'Show' }}</button>
             <button class="btn-delete" (click)="deleteWorkshop(w)">Delete</button>
           </span>
@@ -163,6 +164,39 @@
   </div>
 
 </div>
+
+<!-- Edit Workshop Modal -->
+<dialog #editDialog class="response-dialog edit-dialog" (click)="onEditDialogClick($event)" (close)="onEditDialogClose()">
+  <div class="response-modal" (click)="$event.stopPropagation()">
+    <div class="rm-header">
+      <h3>✏️ Edit Workshop</h3>
+      <button class="rm-close" (click)="closeEdit()" type="button">✕</button>
+    </div>
+    <div class="rm-body edit-body" *ngIf="editForm">
+      <div class="form-group">
+        <label>Workshop Label *</label>
+        <input type="text" [(ngModel)]="editForm.label" name="editLabel" class="form-input" />
+      </div>
+      <div class="form-group">
+        <label>Start Date *</label>
+        <input type="date" [(ngModel)]="editForm.date" name="editDate" class="form-input" />
+      </div>
+      <div class="form-group">
+        <label class="check-label">
+          <input type="checkbox" [(ngModel)]="editForm.active" name="editActive" />
+          <span>Active (visible to users)</span>
+        </label>
+      </div>
+      <div class="add-error" *ngIf="editError">{{ editError }}</div>
+      <div class="edit-actions">
+        <button class="btn-toggle" (click)="closeEdit()" type="button">Cancel</button>
+        <button class="btn btn-primary" (click)="saveEdit()" [disabled]="savingEdit" type="button">
+          {{ savingEdit ? 'Saving...' : 'Save Changes' }}
+        </button>
+      </div>
+    </div>
+  </div>
+</dialog>
 
 <!-- AI Response Modal (native <dialog> — renders in top-layer) -->
 <dialog #responseDialog class="response-dialog" (click)="onDialogClick($event)" (close)="onDialogClose()">
